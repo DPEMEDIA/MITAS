@@ -1,0 +1,95 @@
+html, body {
+	height:100%;
+    color:#000000;
+	font-size:14px;
+	font-family:"ABeeZee";
+    background-color:#204d74;
+}
+
+/* TESTING */
+
+.testbg {
+	background-color:#ececec;
+}
+
+.testbg2 {
+	background-color:red;
+}
+
+/* Navbar */
+
+.navbar-toggler {
+	margin:10px 10px 10px 0px;
+}
+
+.navbar-custom .navbar-nav .nav-link {
+	color:#5e5e5e;
+	padding:1rem 1rem;
+}
+
+.navbar-custom .nav-item.active .nav-link, .navbar-custom .nav-item:hover .nav-link {
+	color:#555555;
+	background-color:#e7e7e7;
+}
+
+.dropdown-item-deactived, .dropdown-item-deactived:hover {
+	color:grey;
+	cursor:default;
+}
+
+/* Card */
+
+.bg-main {
+	background-color:#3e8fd1;
+}
+
+.card-header {
+	color:#ffffff;
+}
+
+/* Form */
+
+.forminput .input-group-text {
+	min-width:150px;
+	font-weight:bold;
+}
+
+/* Table */
+
+.table-dashboard {
+	table-layout:fixed;
+}
+
+.table-list tbody tr {
+	cursor:pointer;
+}
+
+.table-returns {
+	font-size:12px;
+}
+
+/* Modal */
+
+.modal-open .modal {
+	overflow-y:scroll;
+}
+
+
+.modal .input-group-prepend {
+	width:150px;
+}
+
+.modal .input-group-text {
+	padding:.375rem 7rem 0.25rem .75rem;
+}
+
+/* Footer */
+
+.footer a {
+	color:#ffffff !important;
+}
+
+.footer a:hover {
+	color:#999999 !important;
+	text-decoration:none;
+}
