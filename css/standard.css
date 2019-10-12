@@ -6,6 +6,13 @@ html, body {
     background-color:#204d74;
 }
 
+.jumbotron {
+	margin:0px;
+	padding:0px;
+	background:none;
+	border-radius:0px;
+}
+
 /* TESTING */
 
 .testbg {

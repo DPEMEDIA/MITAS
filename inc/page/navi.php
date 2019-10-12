@@ -44,7 +44,6 @@
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="https://twitter.com/blackhackflavor/" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
 					<a class="dropdown-item dropdown-item-deactived" href="#"><i class="fab fa-youtube"></i> Youtube</a>
-					<a class="dropdown-item dropdown-item-deactived" href="#"><i class="fab fa-google-plus"></i> Google+</a>
 					<a class="dropdown-item" href="https://www.facebook.com/blackhackworldwide/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
 					<a class="dropdown-item" href="https://www.instagram.com/blackhackworldwide/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
 					<div class="dropdown-divider"></div>
@@ -52,7 +51,6 @@
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="https://twitter.com/dampferpyramide/" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
 					<a class="dropdown-item dropdown-item-deactived" href="#"><i class="fab fa-youtube"></i> Youtube</a>
-					<a class="dropdown-item dropdown-item-deactived" href="#"><i class="fab fa-google-plus"></i> Google+</a>
 					<a class="dropdown-item" href="https://www.facebook.com/dampferpyramide/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
 					<a class="dropdown-item" href="https://www.instagram.com/dampferpyramide/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
 				</div>
@@ -64,7 +62,7 @@
 				</a>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown-menu-link">
 					<a class="dropdown-item" href="http://dampferpyramide.info/" target="_blank"><i class="fas fa-link"></i> Infoseite</a>
-					<a class="dropdown-item" href="https://www.blackhack.at/" target="_blank"><i class="fas fa-link"></i> Black Hack</a>
+					<a class="dropdown-item" href="https://www.blackhack.eu/" target="_blank"><i class="fas fa-link"></i> Black Hack</a>
 					<a class="dropdown-item" href="https://www.dampferpyramide.at/" target="_blank"><i class="fas fa-link"></i> Dampferpyramide</a>
 					<a class="dropdown-item" href="http://www.mitarbeiter.dampferpyramide.at/" target="_blank"><i class="fas fa-link"></i> Mitarbeitersystem</a>
 				</div>

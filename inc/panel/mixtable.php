@@ -3,11 +3,11 @@
 <div class="card">
 <div class="card-header bg-main">
 <i class="fas fa-table"></i> Mischtabelle
-<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Hier wird eine Mischtabelle angezeigt."></i></span>
+<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Mischtabelle"></i></span>
 </div>
 <div class="card-body">
 <div class="table-responsive">
-<table class="table table-bordered table-striped mb-0">
+<table class="table table-bordered table-striped mb-0" id="mixtable">
 <thead>
 <tr>
 <th scope="col">Base in ml</th>
@@ -184,10 +184,20 @@
 </div>
 <div class="row">
 <div class="col-md-12 mt-4">
-<button type="button" class="btn btn-block btn-primary">Drucken</button>
+<button type="button" class="btn btn-block btn-primary" onclick="printData()">Drucken</button>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
+<script>
+function printData()
+{
+   var divToPrint=document.getElementById("mixtable");
+   newWin= window.open("");
+   newWin.document.write(divToPrint.outerHTML);
+   newWin.print();
+   newWin.close();
+}
+</script>

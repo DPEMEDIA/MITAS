@@ -1,10 +1,10 @@
-<!-- Welcome -->
 <div class="row">
-	<div class="col-md-12 mt-4">
+	<!-- Welcome -->
+	<div class="col-md-6 mt-4">
 		<div class="card">
 			<div class="card-header bg-main">
 				<i class="fas fa-info"></i> We Vape together!
-				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Hier wird eine Willlkommensnachricht angezeigt."></i></span>
+				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Willlkommensnachricht"></i></span>
 			</div>
 			<div class="card-body">
 				<p class="card-text">
@@ -13,23 +13,19 @@
 			</div>
 		</div>
 	</div>
-</div>
-<!-- Store -->
-<div class="row">
-	<div class="col-md-12 mt-4">
+	<!-- Store -->
+	<div class="col-md-6 mt-4">
 		<div class="card">
 			<div class="card-header bg-main">
 				<i class="fas fa-store"></i> Filiale
-				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Hier wird deine Filiale angezeigt."></i></span>
+				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Filiale"></i></span>
 			</div>
 			<div class="card-body">
-				<p class="card-text">
-					<h1 class="text-center">
+				<p class="card-text text-center font-weight-bold">
 					<?php
 					$getStore = MysqlArray(MysqlSelect("SELECT * FROM `ms_stores` WHERE `storeid` = '".MysqlEscape(getUserData("storeid"))."'"));
 					echo $getStore["name"];
 					?>
-					</h1>
 				</p>
 			</div>
 		</div>
@@ -41,11 +37,11 @@
 		<div class="card">
 			<div class="card-header bg-main">
 				<i class="fas fa-calendar-alt"></i> Datum
-				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Hier wird das Datum angezeigt."></i></span>
+				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Datum"></i></span>
 			</div>
 			<div class="card-body">
 				<p class="card-text">
-					<h1 class="text-center"><?php echo strftime("%A").", ".date("d").". ". strftime("%B")." ".date("Y"); ?></h1>
+					<h2 class="text-center"><?php echo strftime("%A").", ".date("d").". ". strftime("%B")." ".date("Y"); ?></h2>
 				</p>
 			</div>
 		</div>
@@ -55,11 +51,11 @@
 		<div class="card">
 			<div class="card-header bg-main">
 				<i class="fas fa-clock"></i> Uhrzeit
-				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Hier wird die aktuelle Uhrzeit angezeigt."></i></span>
+				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Aktuelle Uhrzeit"></i></span>
 			</div>
 			<div class="card-body">
 				<p class="card-text">
-					<h1 id="clock" class="text-center"></h1>
+					<h2 id="clock" class="text-center"></h2>
 				</p>
 			</div>
 		</div>
@@ -71,7 +67,7 @@
 		<div class="card">
 			<div class="card-header bg-main">
 				<i class="fas fa-tasks"></i> Retouren
-				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Hier werden die Retouren deiner Filiale angezeigt."></i></span>
+				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Retouren deiner Filiale"></i></span>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
@@ -148,7 +144,7 @@
 		<div class="card">
 			<div class="card-header bg-main">
 				<i class="fas fa-ticket-alt"></i> Reservierungen
-				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Hier werden deine Reservierung deiner Filiale angezeigt."></i></span>
+				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Reservierung deiner Filiale"></i></span>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
@@ -227,7 +223,7 @@
 		<div class="card">
 			<div class="card-header bg-main">
 				<i class="fas fa-user"></i> Kontoinformationen
-				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Hier werden Informationen deines Kontos angezeigt."></i></span>
+				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Informationen deines Kontos"></i></span>
 			</div>
 			<div class="card-body">
 				<?php
