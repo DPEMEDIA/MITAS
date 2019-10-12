@@ -75,6 +75,19 @@ html, body {
 	font-size:12px;
 }
 
+th:first-child {
+	text-align: center;
+}
+
+thead tr th {
+	color:#ffffff;
+	background-color:#64a5da;
+}
+
+.table td, .table th {
+	vertical-align:middle;
+}
+
 /* Modal */
 
 .modal-open .modal {

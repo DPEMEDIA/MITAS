@@ -43,7 +43,7 @@ require_once("inc/functions.php");
 					// Is User not logged in?
 					if(!checkLogin()) {
 					?>
-						<div class="col-md-4 offset-md-4">
+						<div class="col-md-6 offset-md-3">
 							<div class="card">
 								<div class="card-body">
 									<div class="text-center">
@@ -59,8 +59,6 @@ require_once("inc/functions.php");
 													<span class="input-group-text"><i class="fas fa-user"></i></span>
 												</div>
 												<input type="text" placeholder="Benutzer" minlength="3" maxlength="16" class="form-control" id="username" name="username" required>
-												<div class="valid-feedback"><i class="fas fa-check-circle"></i> Benutzer</div>
-												<div class="invalid-feedback"><i class="fa fa-times-circle"></i> Benutzer</div>
 											</div>
 										</div>
 										<div class="form-group">
@@ -69,8 +67,6 @@ require_once("inc/functions.php");
 													<span class="input-group-text"><i class="fas fa-lock" aria-hidden="true"></i></span>
 												</div>
 												<input type="password" placeholder="Kennwort" minlength="3" maxlength="16" class="form-control" id="password" name="password" required>
-												<div class="valid-feedback"><i class="fas fa-check-circle"></i> Kennwort</div>
-												<div class="invalid-feedback"><i class="fa fa-times-circle"></i> Kennwort</div>
 											</div>
 										</div>
 										<button type="submit" class="btn btn-block btn-primary">Anmelden</button>
