@@ -222,9 +222,18 @@ $(document).on("submit", "#loginForm", function (e)
 {
 	e.preventDefault();
 
-	if(checkLogin()) {
+
 
 		var postData = $(this).serialize();
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            if (form.checkValidity() === false && checkLogin()) {
+              event.stopPropagation();
+            } else {
+
 
 		$.ajax({
 			url : "inc/asc/login.php",
@@ -247,7 +256,11 @@ $(document).on("submit", "#loginForm", function (e)
 			}
 		});
 
-	}
+    }
+     form.classList.add('was-validated');
+    });
+
+
 });
 
 // ==========================================================================

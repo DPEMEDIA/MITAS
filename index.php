@@ -48,13 +48,15 @@ require_once("inc/functions.php");
 									<h3 class="mt-3 text-center">Mitarbeitersystem</h3>
 									<br>
 									<div id="checkLoginError"></div>
-									<form method="POST" name="login" id="loginForm">
+									<form method="POST" name="login" id="loginForm" class="needs-validation" novalidate>
 										<div class="form-group">
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="fas fa-user"></i></span>
 												</div>
-												<input type="text" placeholder="Benutzer" maxlength="16" class="form-control" id="username" name="username">
+												<input type="text" placeholder="Benutzer" maxlength="16" class="form-control" id="username" name="username" required>
+												<div class="valid-feedback"><i class="fas fa-check-circle"></i> Benutzer</div>
+												<div class="invalid-feedback"><i class="fa fa-times-circle"></i> Benutzer</div>
 											</div>
 										</div>
 										<div class="form-group">
@@ -62,7 +64,9 @@ require_once("inc/functions.php");
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="fas fa-lock" aria-hidden="true"></i></span>
 												</div>
-												<input type="password" placeholder="Kennwort" maxlength="16" class="form-control" id="password" name="password">
+												<input type="password" placeholder="Kennwort" maxlength="16" class="form-control" id="password" name="password" required>
+												<div class="valid-feedback"><i class="fas fa-check-circle"></i> Kennwort</div>
+												<div class="invalid-feedback"><i class="fa fa-times-circle"></i> Kennwort</div>
 											</div>
 										</div>
 										<button type="submit" class="btn btn-block btn-primary">Anmelden</button>
