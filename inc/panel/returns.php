@@ -11,7 +11,7 @@
 				$getReturns = MysqlSelect("SELECT * FROM `ms_returns` WHERE `storeid` = '".MysqlEscape(getUserData("storeid"))."' ORDER BY `returnid` ASC LIMIT 25");
 				if(MysqlNumRow($getReturns)) {
 				?>
-				<div class="table-responsive table-list">
+				<div class="table-responsive table-list tableWithID">
 					<table class="table table-returns table-hover table-bordered mb-0">
 						<thead>
 							<tr>
@@ -129,7 +129,7 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<form method="POST" name="return" id="returnForm">	  
+			<form method="POST" name="return" id="returnForm">
 				<div class="modal-body">
 					<div id="checkReturnError"></div>
 					<p><b>Infos</b></p>
@@ -255,7 +255,7 @@
 						<button type="submit" class="btn btn-success w-100">Retour anlegen</button>
 						<button type="reset" class="btn btn-danger w-100" onclick="resetReturn();">Zurücksetzen</button>
 					</div>
-				</div> 
+				</div>
 			</form>
 		</div>
 	</div>

@@ -75,7 +75,7 @@ html, body {
 	font-size:12px;
 }
 
-th:first-child {
+.tableWithID th:first-child {
 	text-align: center;
 }
 
@@ -94,7 +94,7 @@ thead tr th {
 	overflow-y:scroll;
 }
 
-
+/*
 .modal .input-group-prepend {
 	width:150px;
 }
@@ -102,6 +102,7 @@ thead tr th {
 .modal .input-group-text {
 	padding:.375rem 7rem 0.25rem .75rem;
 }
+*/
 
 /* Footer */
 

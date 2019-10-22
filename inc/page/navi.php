@@ -43,14 +43,12 @@
 					<h6 class="dropdown-header">Black Hack</h6>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="https://twitter.com/blackhackflavor/" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
-					<a class="dropdown-item dropdown-item-deactived" href="#"><i class="fab fa-youtube"></i> Youtube</a>
 					<a class="dropdown-item" href="https://www.facebook.com/blackhackworldwide/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
 					<a class="dropdown-item" href="https://www.instagram.com/blackhackworldwide/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
 					<div class="dropdown-divider"></div>
 					<h6 class="dropdown-header">Dampferpyramide</h6>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="https://twitter.com/dampferpyramide/" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
-					<a class="dropdown-item dropdown-item-deactived" href="#"><i class="fab fa-youtube"></i> Youtube</a>
 					<a class="dropdown-item" href="https://www.facebook.com/dampferpyramide/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
 					<a class="dropdown-item" href="https://www.instagram.com/dampferpyramide/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
 				</div>

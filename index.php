@@ -52,13 +52,13 @@ require_once("inc/functions.php");
 									<h3 class="mt-3 text-center">Mitarbeitersystem</h3>
 									<br>
 									<div id="checkLoginError"></div>
-									<form method="POST" name="login" id="loginForm" class="needs-validation" novalidate>
+									<form method="POST" name="login" id="loginForm">
 										<div class="form-group">
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="fas fa-user"></i></span>
 												</div>
-												<input type="text" placeholder="Benutzer" minlength="3" maxlength="16" class="form-control" id="username" name="username" required>
+												<input type="text" placeholder="Benutzer" minlength="1" maxlength="32" class="form-control" id="username" name="username">
 											</div>
 										</div>
 										<div class="form-group">
@@ -66,7 +66,7 @@ require_once("inc/functions.php");
 												<div class="input-group-prepend">
 													<span class="input-group-text"><i class="fas fa-lock" aria-hidden="true"></i></span>
 												</div>
-												<input type="password" placeholder="Kennwort" minlength="3" maxlength="16" class="form-control" id="password" name="password" required>
+												<input type="password" placeholder="Kennwort" minlength="1" maxlength="32" class="form-control" id="password" name="password">
 											</div>
 										</div>
 										<button type="submit" class="btn btn-block btn-primary">Anmelden</button>

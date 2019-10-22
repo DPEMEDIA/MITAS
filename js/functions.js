@@ -213,7 +213,7 @@ function checkLogin(response = false) {
 				$("#checkLoginError").show();
 				$("#checkLoginError").css({"border-color" : "#a94442"});
 				$("#checkLoginError").html("<div class='alert alert-danger'>Der Benutzer oder das Kennwort sind nicht gültig.</div>");
-			}
+            }
 		}
 	}
 }
@@ -222,18 +222,7 @@ $(document).on("submit", "#loginForm", function (e)
 {
 	e.preventDefault();
 
-
-
-		var postData = $(this).serialize();
-
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function(form) {
-            if (form.checkValidity() === false && checkLogin()) {
-              event.stopPropagation();
-            } else {
-
+    var postData = $(this).serialize();
 
 		$.ajax({
 			url : "inc/asc/login.php",
@@ -255,12 +244,6 @@ $(document).on("submit", "#loginForm", function (e)
 				}
 			}
 		});
-
-    }
-     form.classList.add('was-validated');
-    });
-
-
 });
 
 // ==========================================================================
