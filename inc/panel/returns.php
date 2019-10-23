@@ -168,15 +168,29 @@
 					<div class="row">
 						<div class="col-md-12" id="checkAddReturnState"></div>
 					</div>
+
 					<!-- Customer -->
-					<p><b>Kunde</b></p>
+                    <div class="row">
+                    <div class="col-md-6"><p><b>Kunde</b></p></div>
+                    <div class="col-md-3">
+                        <div class="form-check">
+                            <input class="form-check-input position-static" type="checkbox"> Kein E-Mail
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check">
+                            <input class="form-check-input position-static" type="checkbox"> Kein Telefon
+                        </div>
+                    </div>
+                    </div>
+
 					<div class="row">
 						<div class="form-group col-md-3">
 							<div class="input-group">
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fas fa-user"></i></span>
 								</div>
-								<input type="text" placeholder="Vorname" maxlength="24" class="form-control" id="firstname" name="firstname">
+								<input type="text" placeholder="Vorname" maxlength="32" class="form-control" id="firstname" name="firstname">
 							</div>
 
 						</div>
@@ -185,7 +199,7 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="far fa-user"></i></span>
 								</div>
-								<input type="text" placeholder="Nachname" maxlength="24" class="form-control" id="surname" name="surname">
+								<input type="text" placeholder="Nachname" maxlength="32" class="form-control" id="surname" name="surname">
 							</div>
 
 						</div>
@@ -195,7 +209,7 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fas fa-at"></i></span>
 								</div>
-								<input type="text" placeholder="E-Mail" maxlength="32" class="form-control" id="email" name="email">
+								<input type="text" placeholder="E-Mail" maxlength="64" class="form-control" id="email" name="email">
 							</div>
 
 						</div>
@@ -204,7 +218,7 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fas fa-phone"></i></span>
 								</div>
-								<input type="tel" placeholder="Telefon" maxlength="32" class="form-control" id="telefon" name="telefon">
+								<input type="tel" placeholder="Telefon" maxlength="16" class="form-control" id="telefon" name="telefon">
 							</div>
 
 						</div>
@@ -225,7 +239,7 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fas fa-list-ol"></i></span>
 								</div>
-								<input type="text" placeholder="BON-Nr." maxlength="32" class="form-control" id="bonnr" name="bonnr">
+								<input type="text" placeholder="BON-Nr." maxlength="16" class="form-control" id="bonnr" name="bonnr">
 							</div>
 							<div id="checkAddReturnBonnr"></div>
 						</div>

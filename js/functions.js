@@ -197,17 +197,20 @@ function checkReturn(response = false)
 		}
 
 		// IF EMAIL OR TELEFON IS EMPTY...
-		if(email.length == 0 && telefon.length == 0) {
-			error[0] = true;
-			$(".emtel-change").addClass("mb-0");
-			$("#checkAddReturnEmTel").show();
-			$("#checkAddReturnEmTel").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> E-Mail od. Telefon nicht gültig</div>");
-		} else {
-			error[0] = false;
-			$(".emtel-change").removeClass("mb-0");
-			$("#checkAddReturnEmTel").html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> E-Mail / Telefon</div>");
-		}
-
+        if(email.length == 0 && telefon.length == 0) {
+            error[0] = true;
+            $(".emtel-change").addClass("mb-0");
+            $("#checkAddReturnEmTel").show();
+            $("#checkAddReturnEmTel").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> E-Mail oder Telefon nicht gültig</div>");
+        } else if(emailValidation(email) == false || phoneValidation(telefon) == false) {
+            error[0] = true;
+            $("#checkAddReturnEmTel").show();
+            $("#checkAddReturnEmTel").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> E-Mail und Telefon nicht gültig</div>");
+        } else {
+            error[0] = false;
+            $(".emtel-change").removeClass("mb-0");
+            $("#checkAddReturnEmTel").html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> E-Mail / Telefon</div>");
+        }
 		/*
 		if(email.length == 0) {
 			error[0] = true;
@@ -381,3 +384,10 @@ function resetReturn() {
 	$('#returnAddModal').find("#checkAddReturnState, #checkAddReturnFirstname, #checkAddReturnSurname, #checkAddReturnEmTel, #checkAddReturnEmail, #checkAddReturnTelefon, #checkAddReturnBonnr, #checkAddReturnBondate, #checkAddReturnProduct, #checkAddReturnComment").hide();
 }
 // DEBBUGING ==================================================================================================
+function emailValidation(email) {
+    return /\S+@\S+\.\S+/.test(email);
+}
+
+function phoneValidation(phone) {
+    return /^\+?([0-9]{2})\)?([0-9]{10})$/.test(phone);
+}
