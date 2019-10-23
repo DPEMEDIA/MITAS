@@ -174,12 +174,12 @@
                     <div class="col-md-6"><p><b>Kunde</b></p></div>
                     <div class="col-md-3">
                         <div class="form-check">
-                            <input class="form-check-input position-static" type="checkbox"> Kein E-Mail
+                            <input class="form-check-input position-static" type="checkbox" id="noEmail"> Kein E-Mail
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-check">
-                            <input class="form-check-input position-static" type="checkbox"> Kein Telefon
+                            <input class="form-check-input position-static" type="checkbox" id="noPhone"> Kein Telefon
                         </div>
                     </div>
                     </div>

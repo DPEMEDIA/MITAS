@@ -391,3 +391,7 @@ function emailValidation(email) {
 function phoneValidation(phone) {
     return /^\+?([0-9]{2})\)?([0-9]{10})$/.test(phone);
 }
+
+function noMailToggle(check) {
+    // TODO: INPUT EMAIL DE/ACTIVE
+}
