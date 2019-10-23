@@ -1,4 +1,4 @@
-var treeData;
+/*var treeData;
 $(document).ready(function(){
 
     // Treeview
@@ -123,7 +123,7 @@ $(document).ready(function(){
         // TODO
     }
 
-});
+});*/
 // ============================================================================
 
 // Intialiase Clock

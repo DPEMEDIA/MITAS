@@ -97,5 +97,6 @@ require_once("inc/functions.php");
 		<script src="js/bootstrap-datepicker.js"></script>
 		<script src="js/bootstrap-datepicker.de.js"></script>
 		<script src="js/functions.js"></script>
+		<?php if(checkLogin()) { ?><script src="js/kis.js"></script><?php } ?>
 	</body>
 </html>
