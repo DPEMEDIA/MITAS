@@ -27,22 +27,20 @@ require_once("inc/functions.php");
 		if(checkLogin()) {
 			require_once("inc/page/navi.php");
 		}
+		// Set User to logout.
+		checkLogout();
 		?>
 		<!-- Jumbotron -->
 		<div class="jumbotron d-flex align-items-center min-vh-100">
 		<!-- Container -->
 		<div class="container">
-			<!-- Content -->
+		<?php
+		// Is User not logged in?
+		if(!checkLogin()) {
+		?>
+			<!-- Login -->
 			<div class="row">
-				<?php
-				// Set User to logout.
-				checkLogout();
-				?>
-				<div class="col-md-12">
-					<?php
-					// Is User not logged in?
-					if(!checkLogin()) {
-					?>
+				<div class="col-md-12 mt-4">
 						<div class="col-md-6 offset-md-3">
 							<div class="card">
 								<div class="card-body">
@@ -74,13 +72,13 @@ require_once("inc/functions.php");
 								</div>
 							</div>
 						</div>
-					<?php
-					} else {
-						require_once("inc/includer.php");
-					}
-					?>
 				</div>
 			</div>
+			<?php
+			} else {
+				require_once("inc/includer.php");
+			}
+			?>
 			<!-- Footer -->
 			<div class="row footer">
 				<div class="col-md-12">
@@ -97,6 +95,6 @@ require_once("inc/functions.php");
 		<script src="js/bootstrap-datepicker.js"></script>
 		<script src="js/bootstrap-datepicker.de.js"></script>
 		<script src="js/functions.js"></script>
-		<?php if(checkLogin()) { ?><script src="js/kis.js"></script><?php } ?>
+		<?php if(checkLogin() && $_GET["include"] == "kis") { ?><script src="js/kis.js"></script><?php } ?>
 	</body>
 </html>

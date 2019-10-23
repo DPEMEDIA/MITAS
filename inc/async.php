@@ -9,7 +9,7 @@ $Response = (object) array(
 
 // RETURN
 if($_POST["state"] != "" && !empty($_POST["firstname"]) && !empty($_POST["surname"])
-	&& !empty($_POST["email"]) && !empty($_POST["telefon"]) && !empty($_POST["bonnr"]) 
+	&& !empty($_POST["email"]) && !empty($_POST["telefon"]) && !empty($_POST["bonnr"])
 	&& !empty($_POST["bondate"]) && !empty($_POST["product"]) && !empty($_POST["comment"])) {
 	$Response->revert = true;
 }
@@ -27,7 +27,7 @@ $rowUser = MysqlArray(MysqlSelect("SELECT * FROM ms_users WHERE userid = '".Mysq
 ?>
 <!-- EDIT RETURN - MODAL -->
 <div class="modal fade" id="ttt" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+<div class="modal-dialog modal-xl modal-dialog-centered" role="document">
 <div class="modal-content">
 <div class="modal-header">
 <h5 class="modal-title" id="exampleModalLongTitle"><i class="fas fa-edit"></i> Retour bearbeiten</h5>
@@ -35,107 +35,105 @@ $rowUser = MysqlArray(MysqlSelect("SELECT * FROM ms_users WHERE userid = '".Mysq
 <span aria-hidden="true">&times;</span>
 </button>
 </div>
-<form method="POST" name="return" id="returnForm">	  
+<form method="POST" name="return" id="returnForm">
 <div class="modal-body">
 <div id="checkReturnError"></div>
 <p><b>Infos</b></p>
 <div class="row">
-<div class="form-group col-md-6">
+<div class="form-group col-md-3">
 <div class="input-group">
 <div class="input-group-prepend">
-<label class="input-group-text" for="status">Status</label>
+<label class="input-group-text" for="status"><i class="fas fa-info-circle"></i></label>
 </div>
 <select class="custom-select" id="status">
-<option <?php if(empty($row["status"])) { echo "selected='selected'"; } ?>>Auswahl</option>
-<option>=========================</option>
+<option <?php if(empty($row["status"])) { echo "selected='selected'"; } ?> disabled>Status</option>
+<option disabled>==================</option>
 <option value="Offen" <?php if($row["status"] == "Offen") { echo "selected='selected'"; } ?>>Offen</option>
 <option value="Ausgetauscht" <?php if($row["status"] == "Ausgetauscht") { echo "selected='selected'"; } ?>>Ausgetauscht</option>
 <option value="Abgeschlossen" <?php if($row["status"] == "Abgeschlossen") { echo "selected='selected'"; } ?>>Abgeschlossen</option>
 <option value="In Bearbeitung" <?php if($row["status"] == "In Bearbeitung") { echo "selected='selected'"; } ?>>In Bearbeitung</option>
 <option value="Kein Rückmeldung" <?php if($row["status"] == "Kein Rückmeldung") { echo "selected='selected'"; } ?>>Kein Rückmeldung</option>
-<option>=========================</option>
+<option disabled>==================</option>
 </select>
+</div>
+</div>
+<div class="form-group col-md-3">
+<div class="input-group">
+<div class="input-group-prepend">
+<span class="input-group-text"><i class="fas fa-calendar"></i></span>
+</div>
+<span class="form-control"><?php echo date("d.m.Y", strtotime($row["dateofreturn"])); ?></span>
 </div>
 </div>
 <div class="form-group col-md-6">
 <div class="input-group">
 <div class="input-group-prepend">
-<span class="input-group-text" id="basic-addon1">Datum</span>
-</div>
-<span class="form-control"><?php echo date("d.m.Y", strtotime($row["dateofreturn"])); ?></span>
-</div>
-</div>
-</div>
-<div class="form-group">
-<div class="input-group">
-<div class="input-group-prepend">
-<span class="input-group-text" id="basic-addon1">Verkäufer</span>
+<span class="input-group-text"><i class="fas fa-user-circle"></i></span>
 </div>
 <span class="form-control"><?php if($rowUser["username"] != "Admin") { echo $rowUser["firstname"]." ".$rowUser["lastname"]; } else { echo "Administrator"; } ?></span>
+</div>
 </div>
 </div>
 <p><b>Kunde</b></p>
 <!-- BEGIN -->
 <div class="row">
-<div class="form-group col-md-6">
+<div class="form-group col-md-3">
 <div class="input-group">
 <div class="input-group-prepend">
-<span class="input-group-text" id="basic-addon1">Vorname</span>
+<span class="input-group-text"><i class="fas fa-user"></i></span>
 </div>
-<input type="text" class="form-control" value="<?php echo $row["firstname"]; ?>" placeholder="..." aria-label="Vorname" maxlength="24" id="firstname" name="firstname">
+<input type="text" class="form-control" value="<?php echo $row["firstname"]; ?>" placeholder="Vorname" aria-label="Vorname" maxlength="24" id="firstname" name="firstname">
 </div>
 
-<div id="checkAddReturnFirstname"></div>
 
 </div>
-<div class="form-group col-md-6">
+<div class="form-group col-md-3">
 <div class="input-group">
 <div class="input-group-prepend">
-<span class="input-group-text" id="basic-addon1">Nachname</span>
+<span class="input-group-text"><i class="far fa-user"></i></span>
 </div>
-<input type="text" class="form-control" value="<?php echo $row["lastname"]; ?>" placeholder="..." aria-label="Nachname" maxlength="24" id="lastname" name="lastname">
+<input type="text" class="form-control" value="<?php echo $row["lastname"]; ?>" placeholder="Nachname" aria-label="Nachname" maxlength="24" id="lastname" name="lastname">
 </div>
 
-<div id="checkAddReturnSurname"></div>
+</div>
+<!-- END -->
+
+<div class="form-group col-md-3">
+<div class="input-group">
+<div class="input-group-prepend">
+<span class="input-group-text"><i class="fas fa-at"></i></span>
+</div>
+<input type="text" class="form-control" value="<?php echo $row["email"]; ?>" placeholder="E-Mail" aria-label="E-Mail" maxlength="32" id="email" name="email">
+</div>
+
+</div>
+<div class="form-group col-md-3">
+<div class="input-group">
+<div class="input-group-prepend">
+<span class="input-group-text"><i class="fas fa-phone"></i></span>
+</div>
+<input type="tel" class="form-control" value="<?php echo $row["telefon"]; ?>" placeholder="Telefon" aria-label="Telefon" maxlength="32" id="telefon" name="telefon">
+</div>
 
 </div>
 <!-- END -->
 </div>
-<!-- BEGIN -->
+
 <div class="row">
-<div class="form-group col-md-6">
-<div class="input-group">
-<div class="input-group-prepend">
-<span class="input-group-text" id="basic-addon1">E-Mail</span>
-</div>
-<input type="text" class="form-control" value="<?php echo $row["email"]; ?>" placeholder="..." aria-label="E-Mail" maxlength="32" id="email" name="email">
-</div>
-
+<div id="checkAddReturnFirstname"></div>
+<div id="checkAddReturnSurname"></div>
 <div id="checkAddReturnEmail"></div>
-
-</div>
-<div class="form-group col-md-6">
-<div class="input-group">
-<div class="input-group-prepend">
-<span class="input-group-text" id="basic-addon1">Telefon</span>
-</div>
-<input type="tel" class="form-control" value="<?php echo $row["telefon"]; ?>" placeholder="..." aria-label="Telefon" maxlength="32" id="telefon" name="telefon">
 </div>
 
-<div id="checkAddReturnTelefon"></div>
-
-</div>
-<!-- END -->
-</div>
 <p><b>Artikel</b></p>
 <!-- BEGIN -->
 <div class="row">
 <div class="form-group col-md-6">
 <div class="input-group">
 <div class="input-group-prepend">
-<span class="input-group-text" id="basic-addon1">BON-Nr.</span>
+<span class="input-group-text"><i class="fas fa-list-ol"></i></span>
 </div>
-<input type="text" class="form-control" value="<?php echo $row["bonnumber"]; ?>" placeholder="..." aria-label="BON-Nr." maxlength="50" id="bonnr" name="bonnr">
+<input type="text" class="form-control" value="<?php echo $row["bonnumber"]; ?>" placeholder="BON-Nr." aria-label="BON-Nr." maxlength="50" id="bonnr" name="bonnr">
 </div>
 
 <div id="checkAddReturnBonnr"></div>
@@ -144,7 +142,7 @@ $rowUser = MysqlArray(MysqlSelect("SELECT * FROM ms_users WHERE userid = '".Mysq
 <div class="form-group col-md-6">
 <div class="input-group">
 <div class="input-group-prepend">
-<span class="input-group-text" id="basic-addon1">BON-Datum</span>
+<span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
 </div>
 <input type="text" class="form-control" value="<?php echo date("d.m.Y", strtotime($row["bondate"])); ?>" placeholder="TT.MM.JJJJ" aria-label="BON-Datum" maxlength="50" data-provide="datepicker" data-date-language="de" id="bondate" name="bondate">
 </div>
@@ -152,25 +150,24 @@ $rowUser = MysqlArray(MysqlSelect("SELECT * FROM ms_users WHERE userid = '".Mysq
 <div id="checkAddReturnBondate"></div>
 
 </div>
-<!-- END -->
-</div>
-<div class="form-group">
+
+<div class="form-group col-md-6">
 <div class="input-group">
 <div class="input-group-prepend">
-<span class="input-group-text" id="basic-addon1">Artikel</span>
+<span class="input-group-text"><i class="fas fa-box"></i></span>
 </div>
-<input type="text" class="form-control" value="<?php echo $row["product"]; ?>" placeholder="..." aria-label="Artikel" maxlength="50" id="product" name="product">
+<input type="text" class="form-control" value="<?php echo $row["product"]; ?>" placeholder="Artikel" aria-label="Artikel" maxlength="50" id="product" name="product">
 </div>
 
 <div id="checkAddReturnProduct"></div>
 
 </div>
-<div class="form-group mb-0">
+<div class="form-group col-md-6">
 <div class="input-group">
 <div class="input-group-prepend">
-<span class="input-group-text" id="basic-addon1">Kommentar</span>
+<span class="input-group-text"><i class="fas fa-comment"></i></span>
 </div>
-<input type="text" class="form-control" value="<?php echo $row["comment"]; ?>" placeholder="..." aria-label="Kommentar" maxlength="50" id="comment" name="comment">
+<input type="text" class="form-control" value="<?php echo $row["comment"]; ?>" placeholder="Kommentar" aria-label="Kommentar" maxlength="50" id="comment" name="comment">
 </div>
 
 <div id="checkAddReturnComment"></div>
@@ -183,9 +180,9 @@ $rowUser = MysqlArray(MysqlSelect("SELECT * FROM ms_users WHERE userid = '".Mysq
 <button type="reset" class="btn btn-danger w-100">Zurücksetzen</button>
 </div>
 </div>
-	  
+
 </form>
-	  
+
 </div>
 </div>
 </div>

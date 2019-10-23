@@ -110,18 +110,18 @@
 <div class="row">
 	<div class="col-md-6 mt-4">
 		<button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#returnAddModal">
-			Retour anlegen
+			<i class="fas fa-share"></i> Retour anlegen
 		</button>
 	</div>
 	<div class="col-md-6 mt-4">
 		<button type="button" class="btn btn-block btn-danger">
-			Markierte löschen?
+			<i class="fas fa-trash"></i> Markierte löschen?
 		</button>
 	</div>
 </div>
 <!-- Add Return - Modal -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="returnAddModal" aria-hidden="true" id="returnAddModal">
-	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+	<div class="modal-dialog modal-xl modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="returnAddModalTitle"><i class="fas fa-plus-square"></i> Retour anlegen</h5>
@@ -134,128 +134,137 @@
 					<div id="checkReturnError"></div>
 					<p><b>Infos</b></p>
 					<div class="row">
-					<div class="form-group state-change col-md-6">
+					<div class="form-group state-change col-md-3">
 						<div class="input-group">
 							<div class="input-group-prepend">
-								<label class="input-group-text" for="state">Status</label>
+								<label class="input-group-text" for="state"><i class="fas fa-info-circle"></i></label>
 							</div>
 							<select class="custom-select" id="state" name="state">
-								<option disabled selected>Auswahl</option>
-								<option disabled>========================</option>
+								<option disabled selected>Status</option>
+								<option disabled>==================</option>
 								<option value="Offen">Offen</option>
 								<option value="Ausgetauscht">Ausgetauscht</option>
-								<option disabled>========================</option>
+								<option disabled>==================</option>
 							</select>
 						</div>
 					</div>
-					<div class="form-group state-change col-md-6">
+					<div class="form-group state-change col-md-3">
 						<div class="input-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text">Datum</span>
+								<span class="input-group-text"><i class="fas fa-calendar"></i></span>
 							</div>
 							<span class="form-control"><?php echo date("d.m.Y"); ?></span>
 						</div>
 					</div>
-					<div class="form-group col-md-12" id="checkAddReturnState"></div>
-					</div>
-					<div class="form-group">
+					<div class="form-group col-md-6">
 					<div class="input-group">
 					<div class="input-group-prepend">
-					<span class="input-group-text">Verkäufer</span>
+					<span class="input-group-text"><i class="fas fa-user-circle"></i></span>
 					</div>
 					<span class="form-control"><?php if(getUserData("username") != "Admin") { echo getUserData("firstname")." ".getUserData("lastname"); } else { echo "Administrator"; } ?></span>
 					</div>
 					</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" id="checkAddReturnState"></div>
+					</div>
 					<!-- Customer -->
 					<p><b>Kunde</b></p>
 					<div class="row">
-						<div class="form-group col-md-6">
+						<div class="form-group col-md-3">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text">Vorname</span>
+									<span class="input-group-text"><i class="fas fa-user"></i></span>
 								</div>
-								<input type="text" placeholder="..." maxlength="24" class="form-control" id="firstname" name="firstname">
+								<input type="text" placeholder="Vorname" maxlength="24" class="form-control" id="firstname" name="firstname">
 							</div>
-							<div id="checkAddReturnFirstname"></div>
+
 						</div>
-						<div class="form-group col-md-6">
+						<div class="form-group col-md-3">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text">Nachname</span>
+									<span class="input-group-text"><i class="far fa-user"></i></span>
 								</div>
-								<input type="text" placeholder="..." maxlength="24" class="form-control" id="surname" name="surname">
+								<input type="text" placeholder="Nachname" maxlength="24" class="form-control" id="surname" name="surname">
 							</div>
-							<div id="checkAddReturnSurname"></div>
+
 						</div>
+
+						<div class="form-group emtel-change col-md-3">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-at"></i></span>
+								</div>
+								<input type="text" placeholder="E-Mail" maxlength="32" class="form-control" id="email" name="email">
+							</div>
+
+						</div>
+						<div class="form-group emtel-change col-md-3">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-phone"></i></span>
+								</div>
+								<input type="tel" placeholder="Telefon" maxlength="32" class="form-control" id="telefon" name="telefon">
+							</div>
+
+						</div>
+
 					</div>
+
 					<div class="row">
-						<div class="form-group emtel-change col-md-6">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text">E-Mail</span>
-								</div>
-								<input type="text" placeholder="..." maxlength="32" class="form-control" id="email" name="email">
-							</div>
-							<div id="checkAddReturnEmail"></div>
-						</div>
-						<div class="form-group emtel-change col-md-6">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text">Telefon</span>
-								</div>
-								<input type="tel" placeholder="..." maxlength="32" class="form-control" id="telefon" name="telefon">
-							</div>
-							<div id="checkAddReturnTelefon"></div>
-						</div>
-						<div class="form-group col-md-12" id="checkAddReturnEmTel"></div>
+						<div class="col-md-3" id="checkAddReturnFirstname"></div>
+						<div class="col-md-3" id="checkAddReturnSurname"></div>
+						<div class="col-md-6" id="checkAddReturnEmTel"></div>
 					</div>
+
 					<!-- Product -->
 					<p><b>Artikel</b></p>
 					<div class="row">
 						<div class="form-group col-md-6">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text">BON-Nr.</span>
+									<span class="input-group-text"><i class="fas fa-list-ol"></i></span>
 								</div>
-								<input type="text" placeholder="..." maxlength="32" class="form-control" id="bonnr" name="bonnr">
+								<input type="text" placeholder="BON-Nr." maxlength="32" class="form-control" id="bonnr" name="bonnr">
 							</div>
 							<div id="checkAddReturnBonnr"></div>
 						</div>
 						<div class="form-group col-md-6">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text">BON-Datum</span>
+									<span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
 								</div>
 								<input type="text" placeholder="TT.MM.JJJJ" maxlength="10" data-provide="datepicker" data-date-language="de" class="form-control" id="bondate" name="bondate">
 							</div>
 							<div id="checkAddReturnBondate"></div>
 						</div>
-					</div>
-					<div class="form-group">
+
+					<div class="form-group col-md-6">
 						<div class="input-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text">Artikel</span>
+								<span class="input-group-text"><i class="fas fa-box"></i></span>
 							</div>
-							<input type="text" placeholder="...." maxlength="50" class="form-control" id="product" name="product">
+							<input type="text" placeholder="Artikel" maxlength="50" class="form-control" id="product" name="product">
 						</div>
 						<div id="checkAddReturnProduct"></div>
 					</div>
-					<div class="form-group mb-0">
+					<div class="form-group col-md-6">
 						<div class="input-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text">Kommentar</span>
+								<span class="input-group-text"><i class="fas fa-comment"></i></span>
 							</div>
-							<input type="text" placeholder="..." maxlength="255" class="form-control" id="comment" name="comment">
+							<input type="text" placeholder="Kommentar" maxlength="255" class="form-control" id="comment" name="comment">
 						</div>
 						<div id="checkAddReturnComment"></div>
 					</div>
 				</div>
 				<div class="modal-footer" style="display:block !important;">
 					<div class="btn-group d-flex" role="group" aria-label="Retour anlegen">
-						<button type="submit" class="btn btn-success w-100">Retour anlegen</button>
-						<button type="reset" class="btn btn-danger w-100" onclick="resetReturn();">Zurücksetzen</button>
+						<button type="submit" class="btn btn-success w-100"><i class="fas fa-share"></i> Retour anlegen</button>
+						<button type="reset" class="btn btn-danger w-100" onclick="resetReturn();"><i class="fas fa-undo"></i> Zurücksetzen</button>
 					</div>
 				</div>
+			</div>
 			</form>
 		</div>
 	</div>

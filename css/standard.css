@@ -79,12 +79,12 @@ html, body {
 	text-align: center;
 }
 
-thead tr th {
+.table-bordered thead tr th {
 	color:#ffffff;
 	background-color:#64a5da;
 }
 
-.table td, .table th {
+.table-bordered td, .table-bordered th {
 	vertical-align:middle;
 }
 
@@ -94,12 +94,18 @@ thead tr th {
 	overflow-y:scroll;
 }
 
-.modal .input-group-prepend {
-	width:150px;
+.modal .input-group-text {
+	width:44px;
+	padding:0 1rem 0 1rem;
 }
 
-.modal .input-group-text {
-	padding:.375rem 7rem 0.25rem .75rem;
+.modal .form-control {
+	overflow:hidden;
+}
+
+/* Alerts */
+.alert {
+	padding:0.75rem .75rem 0.75rem 1rem;
 }
 
 /* Footer */
