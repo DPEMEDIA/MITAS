@@ -3,7 +3,7 @@
 	<div class="col-md-12 mt-4">
 		<div class="card">
 			<div class="card-header bg-main">
-				<i class="fas fa-list"></i> Übersicht der Retouren
+				<i class="fas fa-list"></i> Übersicht der Retouren - <?php echo getStoreData("name"); ?>
 				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Eine Übersicht der Retouren deiner Filiale."></i></span>
 			</div>
 			<div class="card-body">
@@ -84,7 +84,7 @@
 					<!-- Sitenation -->
 					<div class="col-6 col-md-6">
 						<nav aria-label="Sitenation">
-							<ul class="pagination mb-0 justify-content-end">
+							<ul class="pagination mb-0 justify-content-end sitenation">
 								<li class="page-item">
 									<span class="page-link">Seite</span>
 								</li>
@@ -173,14 +173,16 @@
                     <div class="row">
                     <div class="col-md-6"><p><b>Kunde</b></p></div>
                     <div class="col-md-3">
-                        <div class="form-check">
-                            <input class="form-check-input position-static" type="checkbox" id="noEmail"> Kein E-Mail
-                        </div>
+						<div class="custom-control custom-checkbox">
+					    	<input type="checkbox" class="custom-control-input" id="noemail" name="noemail" onClick="checkboxToggle('noemail', 'email')">
+					    	<label class="custom-control-label" for="noemail"> Kein E-Mail</label>
+					  	</div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-check">
-                            <input class="form-check-input position-static" type="checkbox" id="noPhone"> Kein Telefon
-                        </div>
+					<div class="col-md-3">
+						<div class="custom-control custom-checkbox">
+					    	<input type="checkbox" class="custom-control-input" id="nophone" name="nophone" onClick="checkboxToggle('nophone', 'telefon')">
+					    	<label class="custom-control-label" for="nophone"> Kein Telefon</label>
+					  	</div>
                     </div>
                     </div>
 
@@ -229,6 +231,8 @@
 						<div class="col-md-3" id="checkAddReturnFirstname"></div>
 						<div class="col-md-3" id="checkAddReturnSurname"></div>
 						<div class="col-md-6" id="checkAddReturnEmTel"></div>
+						<div class="col-md-3" id="checkAddReturnEmail"></div>
+						<div class="col-md-3" id="checkAddReturnTelefon"></div>
 					</div>
 
 					<!-- Product -->
@@ -239,6 +243,9 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fas fa-list-ol"></i></span>
 								</div>
+
+								<span class="form-control"><?php echo getStoreData("short"); ?></span>
+
 								<input type="text" placeholder="BON-Nr." maxlength="16" class="form-control" id="bonnr" name="bonnr">
 							</div>
 							<div id="checkAddReturnBonnr"></div>

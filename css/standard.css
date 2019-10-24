@@ -108,6 +108,16 @@ html, body {
 	padding:0.75rem .75rem 0.75rem 1rem;
 }
 
+/* Pagination */
+.page-link {
+	color:#333333;
+}
+
+.page-item.active .page-link {
+	border-color:#64a5da;
+	background-color:#64a5da;
+}
+
 /* Footer */
 
 .footer a {

@@ -1,3 +1,8 @@
+// ==========================================================================
+//
+//									Clock
+//
+// ==========================================================================
 // Intialiase Clock
 timeClock();
 
@@ -150,6 +155,7 @@ function checkLogout()
 function checkReturn(response = false)
 {
 	var state		= $.trim($("#state option:selected").val());
+
 	var firstname	= $.trim($("#firstname").val());
 	var surname		= $.trim($("#surname").val());
 	var email		= $.trim($("#email").val());
@@ -197,38 +203,57 @@ function checkReturn(response = false)
 		}
 
 		// IF EMAIL OR TELEFON IS EMPTY...
-        if(email.length == 0 && telefon.length == 0) {
+		if(noemail.checked == false || nophone.checked == false) {
+
+		$("#checkAddReturnEmTel").hide();
+
+		if(noemail.checked == false) {
+        if(email.length == 0) {
             error[0] = true;
-            $(".emtel-change").addClass("mb-0");
-            $("#checkAddReturnEmTel").show();
-            $("#checkAddReturnEmTel").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> E-Mail oder Telefon nicht gültig</div>");
-        } else if(emailValidation(email) == false || phoneValidation(telefon) == false) {
+            $("#checkAddReturnEmail").show();
+            $("#checkAddReturnEmail").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> E-Mail nicht gültig</div>");
+        } else if(emailValidation(email) == false) {
             error[0] = true;
-            $("#checkAddReturnEmTel").show();
-            $("#checkAddReturnEmTel").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> E-Mail und Telefon nicht gültig</div>");
+			$("#checkAddReturnEmail").show();
+            $("#checkAddReturnEmail").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> E-Mail - Format nicht gültig</div>");
         } else {
             error[0] = false;
-            $(".emtel-change").removeClass("mb-0");
-            $("#checkAddReturnEmTel").html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> E-Mail / Telefon</div>");
-        }
-		/*
-		if(email.length == 0) {
-			error[0] = true;
 			$("#checkAddReturnEmail").show();
-			$("#checkAddReturnEmail").html("<div class='alert alert-danger mt-3 mb-0'><i class='fas fa-times-circle'></i> E-Mail nicht gültig</div>");
+            $("#checkAddReturnEmail").html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> E-Mail</div>");
+        }
+		} else {
+			error[0] = false;
+			$("#checkAddReturnEmail").show();
+            $("#checkAddReturnEmail").html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> E-Mail</div>");
+		}
+
+		if(nophone.checked == false) {
+        if(telefon.length == 0) {
+            error[0] = true;
+            $("#checkAddReturnTelefon").show();
+            $("#checkAddReturnTelefon").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Telefon nicht gültig</div>");
+        } else if(phoneValidation(email) == false) {
+            error[0] = true;
+			$("#checkAddReturnTelefon").show();
+            $("#checkAddReturnTelefon").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Telefon - Format nicht gültig</div>");
+        } else {
+            error[0] = false;
+			$("#checkAddReturnTelefon").show();
+            $("#checkAddReturnTelefon").html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> Telefon</div>");
+        }
+		} else {
+			error[0] = false;
+			$("#checkAddReturnTelefon").show();
+            $("#checkAddReturnTelefon").html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> Telefon</div>");
+		}
+
 		} else {
 			error[0] = false;
 			$("#checkAddReturnEmail").hide();
-		}
-
-		if(telefon.length == 0) {
-			error[0] = true;
-			$("#checkAddReturnTelefon").show();
-			$("#checkAddReturnTelefon").html("<div class='alert alert-danger mt-3 mb-0'><i class='fas fa-times-circle'></i> Telefon nicht gültig</div>");
-		} else {
-			error[0] = false;
 			$("#checkAddReturnTelefon").hide();
-		} */
+			$("#checkAddReturnEmTel").show();
+            $("#checkAddReturnEmTel").html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> E-Mail / Telefon</div>");
+		}
 		// IF EMAIL OR TELEFON IS EMPTY...
 
 		if(bonnr.length == 0) {
@@ -330,7 +355,6 @@ function rowReturn(returnid)
 // ==========================================================================
 // ==========================================================================
 
-
 $('#drucker, #edit').click(function() {
 	$(this).parent().parent().addClass('testbg2').siblings().each(function() {
 		$(this).removeClass('testbg2');
@@ -392,6 +416,8 @@ function phoneValidation(phone) {
     return /^\+?([0-9]{2})\)?([0-9]{10})$/.test(phone);
 }
 
-function noMailToggle(check) {
-    // TODO: INPUT EMAIL DE/ACTIVE
+function checkboxToggle(checkboxID, toggleID) {
+	var checkbox = document.getElementById(checkboxID);
+	var toggle = document.getElementById(toggleID);
+	updateToggle = checkbox.checked ? toggle.disabled=true : toggle.disabled=false;
 }

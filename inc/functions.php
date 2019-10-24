@@ -3,11 +3,11 @@
 // Check Login
 // ==========================================================================
 function checkLogin() {
-	
+
 	global $Server;
-	
+
 	$checkBan = MysqlArray(MysqlSelect("SELECT * FROM `ms_users` WHERE `userid` = '".MysqlEscape($_SESSION[$Server->session])."'"));
-	
+
 	if($_SESSION[$Server->session] && $checkBan["locked"] != "1") {
 		return TRUE;
 	} else {
@@ -23,13 +23,13 @@ function checkLogin() {
 // 3 = Mitarbeiter
 // ==========================================================================
 function checkAdmin() {
-	
+
 	global $Server;
-	
+
 	if($_SESSION[$Server->session]) {
-		
+
 		$checkAdmin = MysqlArray(MysqlSelect("SELECT * FROM `ms_users` WHERE `userid` = '".MysqlEscape($_SESSION[$Server->session])."'"));
-		
+
 		if($checkAdmin["roleid"] == 1) {
 			return TRUE;
 		} else {
@@ -44,10 +44,25 @@ function checkAdmin() {
 function getUserData($getData)
 {
 	global $Server;
-	
+
 	if(checkLogin()) {
 		$getUserQuery = MysqlArray(MysqlSelect("SELECT * FROM `ms_users` WHERE `userid` = '".MysqlEscape($_SESSION[$Server->session])."'"));
 		$getData = $getUserQuery[$getData];
+		return $getData;
+	}
+}
+
+// ==========================================================================
+// Get StoreData
+// ==========================================================================
+function getStoreData($getData)
+{
+	global $Server;
+
+	if(checkLogin()) {
+		$getUserData = getUserData("storeid");
+		$getStoreQuery = MysqlArray(MysqlSelect("SELECT * FROM `ms_stores` WHERE `storeid` = '".MysqlEscape($getUserData)."'"));
+		$getData = $getStoreQuery[$getData];
 		return $getData;
 	}
 }
@@ -58,14 +73,14 @@ function getUserData($getData)
 function checkLogout()
 {
 	global $Server;
-	
+
 	$checkLogout = MysqlSelect("SELECT * FROM `ms_users` WHERE `userid` = '".MysqlEscape($_SESSION[$Server->session])."'");
 	while($getLogout = MysqlAssoc($checkLogout)) {
-		
+
 		$online = $Server->timestamp - $getLogout["online"];
-		
+
 		// Check If it's not logged about 15 Minutes
-		
+
 		if($online > 900) {
 			if(!checkAdmin()) {
 				if($getLogout["userid"] != 0) {
@@ -98,14 +113,14 @@ function checkLogout()
 function welcome()
 {
 	global $Server;
-	
+
 	$getUser = MysqlArray(MysqlSelect("SELECT * FROM `ms_users` WHERE `userid` = '".MysqlEscape($_SESSION[$Server->session])."'"));
-	
+
     $timestamp = $Server->timestamp;
     $dateOfVar = date("d.m.Y", $timestamp);
     $timeOfVar = date("H:i", $timestamp);
     $phpClock = " ";
-	
+
     if($timeOfVar > "00:00" && $phpClock < "03:00" || $phpClock == "00:00") {
 		if(!checkAdmin()) {
 			$welcome = "Guten Abend, ".$getUser["firstname"];
@@ -113,7 +128,7 @@ function welcome()
 			$welcome = "Guten Abend, Admin";
 		}
     }
-	
+
     if ($timeOfVar > "03:00" && $phpClock < "12:00" || $phpClock == "03:00") {
 		if(!checkAdmin()) {
 			$welcome = "Guten Morgen, ".$getUser["firstname"];
@@ -121,7 +136,7 @@ function welcome()
 			$welcome = "Guten Morgen, Admin";
 		}
     }
-	
+
     if ($timeOfVar > "12:00" && $phpClock < "18:00" || $phpClock == "12:00") {
 		if(!checkAdmin()) {
 			$welcome = "Guten Tag, ".$getUser["firstname"];
@@ -129,7 +144,7 @@ function welcome()
 			$welcome = "Guten Tag, Admin";
 		}
     }
-	
+
     if ($timeOfVar > "18:00" && $phpClock < "00:00" || $phpClock == "18:00") {
 		if(!checkAdmin()) {
 			$welcome = "Guten Abend, ".$getUser["firstname"];
@@ -137,7 +152,7 @@ function welcome()
 			$welcome = "Guten Abend, Admin";
 		}
     }
-	
+
     if ($dateOfVar == "24.12.") {
 		if(!checkAdmin()) {
 			$welcome = "Frohes Weihnachtsfest wünscht dir die Geschäftsleitung!";
@@ -145,7 +160,7 @@ function welcome()
 			$welcome = "Merry Christmas, Admin";
 		}
     }
-	
+
     if ($dateOfVar == "31.12.") {
 		if(!checkAdmin()) {
 			$welcome = "Guten Rutsch ins neue Jahr wünscht dir die Geschäftsleitung!";
@@ -153,7 +168,7 @@ function welcome()
 			$welcome = "Happy New Year, Admin";
 		}
     }
-	
+
     if ($dateOfVar == "01.01.") {
 		if(!checkAdmin()) {
 			$welcome = "Frohes neues Jahr wünscht dir die Geschäftsleitung!";
@@ -161,7 +176,7 @@ function welcome()
 			$welcome = "New Yearhhh!, Admin";
 		}
     }
-	
+
     echo "$welcome";
 }
 ?>
