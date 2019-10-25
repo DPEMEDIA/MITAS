@@ -179,4 +179,14 @@ function welcome()
 
     echo "$welcome";
 }
+
+// DEBBUGING ==================================================================================================
+
+function emailValidation($email) {
+    return filter_var($email, FILTER_VALIDATE_EMAIL);
+}
+
+function phoneValidation($phone) {
+    return preg_match("/^\+?([0-9]{2})\)?([0-9]{8,13})$/", $phone);
+}
 ?>

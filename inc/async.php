@@ -1,5 +1,6 @@
 <?php
 include("config.php");
+include("functions.php");
 // =================================================
 $Response = (object) array(
 	'error' => false,
@@ -12,41 +13,48 @@ if($_POST["state"] != "" && !empty($_POST["firstname"]) && !empty($_POST["surnam
 	&& !empty($_POST["bonnr"])	&& !empty($_POST["bondate"])
 	&& !empty($_POST["product"]) && !empty($_POST["comment"])) {
 
+    // Email & Phone
+	if($_POST["noemail"] == false && $_POST["nophone"] == false) {
 
-        // Test
-		if($_POST["noemail"] == false && $_POST["nophone"] == false) {
-
-				if(!empty($_POST["email"]) && !empty($_POST["telefon"])) {
-					$Response->revert = true;
-				} else {
-					$Response->error = true;
-					$Response->grund = 'empty emtel';
-				}
-
-
-		} else {
-			if($_POST["noemail"] == false && $_POST["nophone"] == true) {
-				if(!empty($_POST["email"])) {
-					$Response->revert = true;
-				} else {
-					$Response->error = true;
-					$Response->grund = 'empty email';
-				}
+			if(!empty($_POST["email"]) && !empty($_POST["telefon"])) {
+                if(emailValidation($_POST["email"]) && phoneValidation($_POST["telefon"])) {
+                    $Response->revert = true;
+                } else {
+                    $Response->error = true;
+    				$Response->grund = 'wrong emtel format';
+                }
+			} else {
+				$Response->error = true;
+				$Response->grund = 'empty emtel';
 			}
-
-			if($_POST["noemail"] == true && $_POST["nophone"] == false) {
-				if(!empty($_POST["telefon"])) {
-					$Response->revert = true;
-				} else {
-					$Response->error = true;
-					$Response->grund = 'empty telefon';
-				}
-			}
-
-			if($_POST["noemail"] == true && $_POST["nophone"] == true) {
-				$Response->revert = true;
+	} else {
+		if($_POST["noemail"] == false && $_POST["nophone"] == true) {
+			if(!empty($_POST["email"])) {
+                if(emailValidation($_POST["email"])) {
+                	$Response->revert = true;
+                } else {
+                    $Response->error = true;
+					$Response->grund = 'wrong email format';
+                }
+			} else {
+				$Response->error = true;
+				$Response->grund = 'empty email';
 			}
 		}
+
+		if($_POST["noemail"] == true && $_POST["nophone"] == false) {
+            if(phoneValidation($_POST["telefon"])) {
+                $Response->revert = true;
+            } else {
+                $Response->error = true;
+                $Response->grund = 'wrong telefon format';
+            }
+		}
+
+		if($_POST["noemail"] == true && $_POST["nophone"] == true) {
+			$Response->revert = true;
+		}
+	}
 
 
 
