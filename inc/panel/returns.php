@@ -220,7 +220,7 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fas fa-phone"></i></span>
 								</div>
-								<input type="tel" placeholder="Telefon" maxlength="16" class="form-control" id="telefon" name="telefon">
+								<input type="tel" placeholder="+43" maxlength="16" class="form-control" id="telefon" name="telefon">
 							</div>
 
 						</div>
@@ -242,11 +242,9 @@
 							<div class="input-group">
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fas fa-list-ol"></i></span>
+									<span class="input-group-text bon-text"><?php echo getStoreData("short"); ?></span>
 								</div>
-
-								<span class="form-control"><?php echo getStoreData("short"); ?></span>
-
-								<input type="text" placeholder="BON-Nr." maxlength="16" class="form-control" id="bonnr" name="bonnr">
+								<input type="text" placeholder="BON-Nr." maxlength="8" class="form-control" id="bonnr" name="bonnr">
 							</div>
 							<div id="checkAddReturnBonnr"></div>
 						</div>

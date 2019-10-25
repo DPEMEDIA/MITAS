@@ -9,13 +9,50 @@ $Response = (object) array(
 
 // RETURN
 if($_POST["state"] != "" && !empty($_POST["firstname"]) && !empty($_POST["surname"])
-	&& !empty($_POST["email"]) && !empty($_POST["telefon"]) && !empty($_POST["bonnr"])
-	&& !empty($_POST["bondate"]) && !empty($_POST["product"]) && !empty($_POST["comment"])) {
-	$Response->revert = true;
-}
-else {
-$Response->error = true;
-$Response->grund = 'empty';
+	&& !empty($_POST["bonnr"])	&& !empty($_POST["bondate"])
+	&& !empty($_POST["product"]) && !empty($_POST["comment"])) {
+
+
+
+		if($_POST["noemail"] == false && $_POST["nophone"] == false) {
+
+				if(!empty($_POST["email"]) && !empty($_POST["telefon"])) {
+					$Response->revert = true;
+				} else {
+					$Response->error = true;
+					$Response->grund = 'empty emtel';
+				}
+
+
+		} else {
+			if($_POST["noemail"] == false && $_POST["nophone"] == true) {
+				if(!empty($_POST["email"])) {
+					$Response->revert = true;
+				} else {
+					$Response->error = true;
+					$Response->grund = 'empty email';
+				}
+			}
+
+			if($_POST["noemail"] == true && $_POST["nophone"] == false) {
+				if(!empty($_POST["telefon"])) {
+					$Response->revert = true;
+				} else {
+					$Response->error = true;
+					$Response->grund = 'empty telefon';
+				}
+			}
+
+			if($_POST["noemail"] == true && $_POST["nophone"] == true) {
+				$Response->revert = true;
+			}
+		}
+
+
+
+} else {
+	$Response->error = true;
+	$Response->grund = 'empty';
 }
 
 
@@ -103,7 +140,7 @@ $rowUser = MysqlArray(MysqlSelect("SELECT * FROM ms_users WHERE userid = '".Mysq
 <div class="input-group-prepend">
 <span class="input-group-text"><i class="fas fa-at"></i></span>
 </div>
-<input type="text" class="form-control" value="<?php echo $row["email"]; ?>" placeholder="E-Mail" aria-label="E-Mail" maxlength="32" id="email" name="email">
+<input type="text" class="form-control" value="<?php echo $row["email"]; ?>" placeholder="E-Mail" aria-label="E-Mail" maxlength="64" id="email" name="email">
 </div>
 
 </div>
@@ -112,7 +149,7 @@ $rowUser = MysqlArray(MysqlSelect("SELECT * FROM ms_users WHERE userid = '".Mysq
 <div class="input-group-prepend">
 <span class="input-group-text"><i class="fas fa-phone"></i></span>
 </div>
-<input type="tel" class="form-control" value="<?php echo $row["telefon"]; ?>" placeholder="Telefon" aria-label="Telefon" maxlength="32" id="telefon" name="telefon">
+<input type="tel" class="form-control" value="<?php echo $row["telefon"]; ?>" placeholder="+43" aria-label="Telefon" maxlength="16" id="telefon" name="telefon">
 </div>
 
 </div>
@@ -133,7 +170,7 @@ $rowUser = MysqlArray(MysqlSelect("SELECT * FROM ms_users WHERE userid = '".Mysq
 <div class="input-group-prepend">
 <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
 </div>
-<input type="text" class="form-control" value="<?php echo $row["bonnumber"]; ?>" placeholder="BON-Nr." aria-label="BON-Nr." maxlength="50" id="bonnr" name="bonnr">
+<input type="text" class="form-control" value="<?php echo $row["bonnumber"]; ?>" placeholder="BON-Nr." aria-label="BON-Nr." maxlength="8" id="bonnr" name="bonnr">
 </div>
 
 <div id="checkAddReturnBonnr"></div>
@@ -144,7 +181,7 @@ $rowUser = MysqlArray(MysqlSelect("SELECT * FROM ms_users WHERE userid = '".Mysq
 <div class="input-group-prepend">
 <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
 </div>
-<input type="text" class="form-control" value="<?php echo date("d.m.Y", strtotime($row["bondate"])); ?>" placeholder="TT.MM.JJJJ" aria-label="BON-Datum" maxlength="50" data-provide="datepicker" data-date-language="de" id="bondate" name="bondate">
+<input type="text" class="form-control" value="<?php echo date("d.m.Y", strtotime($row["bondate"])); ?>" placeholder="TT.MM.JJJJ" aria-label="BON-Datum" maxlength="10" data-provide="datepicker" data-date-language="de" id="bondate" name="bondate">
 </div>
 
 <div id="checkAddReturnBondate"></div>

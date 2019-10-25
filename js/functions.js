@@ -175,6 +175,9 @@ function checkReturn(response = false)
 			$(".state-change").addClass("mb-0");
 			$("#checkAddReturnState").show();
 			$("#checkAddReturnState").html("<div class='alert alert-danger mb-3'><i class='fas fa-times-circle'></i> Status nicht gültig</div>");
+		} else if(state != "Offen" && state != "Ausgetauscht") {
+			$("#checkAddReturnState").show();
+			$("#checkAddReturnState").html("<div class='alert alert-danger mb-3'><i class='fas fa-times-circle'></i> Status nicht gültig</div>");
 		} else {
 			error[0] = false;
 			$(".state-change").addClass("mb-0");
@@ -232,7 +235,7 @@ function checkReturn(response = false)
             error[0] = true;
             $("#checkAddReturnTelefon").show();
             $("#checkAddReturnTelefon").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Telefon nicht gültig</div>");
-        } else if(phoneValidation(email) == false) {
+        } else if(phoneValidation(telefon) == false) {
             error[0] = true;
 			$("#checkAddReturnTelefon").show();
             $("#checkAddReturnTelefon").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Telefon - Format nicht gültig</div>");
@@ -260,7 +263,11 @@ function checkReturn(response = false)
 			error[0] = true;
 			$("#checkAddReturnBonnr").show();
 			$("#checkAddReturnBonnr").html("<div class='alert alert-danger mt-3 mb-0'><i class='fas fa-times-circle'></i> Bon-Nr. nicht gültig</div>");
-		} else {
+		} else if(bonValidation(bonnr) == false) {
+            error[0] = true;
+			$("#checkAddReturnBonnr").show();
+            $("#checkAddReturnBonnr").html("<div class='alert alert-danger mt-3 mb-0'><i class='fas fa-times-circle'></i> Bon-Nr. - Format nicht gültig</div>");
+        } else {
 			error[0] = false;
 			$("#checkAddReturnBonnr").show();
 			$("#checkAddReturnBonnr").html("<div class='alert alert-success mt-3 mb-0'><i class='fas fa-check-circle'></i> Bon-Nr.</div>");
@@ -321,7 +328,7 @@ $(document).on("submit", "#returnForm", function (e)
 
 				if(callBack.revert == true) {
 					alert('success');
-					$("#returnAddModal").modal("hide");
+					// $("#returnAddModal").modal("hide");
 				} else {
 					checkReturn(callBack);
 				}
@@ -395,6 +402,12 @@ $('#returnAddModal').on('hidden.bs.modal', function () {
 	$(".state-change").removeClass("mb-0");
 	$(".emtel-change").removeClass("mb-0");
 	$(this).find("#state").val($('select').children().eq(0).val());
+
+	$(this).find("#noemail").prop("checked", false);
+	$(this).find("#nophone").prop("checked", false);
+	$(this).find("#email").prop("disabled", false);
+	$(this).find("#telefon").prop("disabled", false);
+
 	$(this).find("#firstname, #surname, #email, #telefon, #bonnr, #bondate, #product, #comment").val('').end();
 	$(this).find("#checkAddReturnState, #checkAddReturnFirstname, #checkAddReturnSurname, #checkAddReturnEmTel, #checkAddReturnEmail, #checkAddReturnTelefon, #checkAddReturnBonnr, #checkAddReturnBondate, #checkAddReturnProduct, #checkAddReturnComment").hide();
 });
@@ -413,11 +426,16 @@ function emailValidation(email) {
 }
 
 function phoneValidation(phone) {
-    return /^\+?([0-9]{2})\)?([0-9]{10})$/.test(phone);
+    return /^\+?([0-9]{2})\)?([0-9]{8,13})$/.test(phone);
+}
+
+function bonValidation(bon) {
+	return /^([0-9]{4,8})$/.test(bon);
 }
 
 function checkboxToggle(checkboxID, toggleID) {
-	var checkbox = document.getElementById(checkboxID);
-	var toggle = document.getElementById(toggleID);
+	var checkbox = $("#" + checkboxID)[0];
+	var toggle = $("#" + toggleID)[0];
+	$(toggle).val('');
 	updateToggle = checkbox.checked ? toggle.disabled=true : toggle.disabled=false;
 }
