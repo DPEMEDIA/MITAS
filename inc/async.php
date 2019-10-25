@@ -13,7 +13,7 @@ if($_POST["state"] != "" && !empty($_POST["firstname"]) && !empty($_POST["surnam
 	&& !empty($_POST["product"]) && !empty($_POST["comment"])) {
 
 
-
+        // Test
 		if($_POST["noemail"] == false && $_POST["nophone"] == false) {
 
 				if(!empty($_POST["email"]) && !empty($_POST["telefon"])) {
