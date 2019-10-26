@@ -33,7 +33,7 @@ $Server = (object) array(
 	"session" => "userid",
 	"timestamp" => time(),
 	"name" => "Mitarbeitersystem",
-	"version" => "V. 0.1",
+	"version" => "V. 0.53",
 );
 
 global $Server;
@@ -57,7 +57,7 @@ function MysqlSelect($query) {
 		return mysqli_query($Server->query, $query);
 	}
 }
-    
+
 function MysqlInsert($query) {
 	if($query) {
 		global $Server;
@@ -68,21 +68,21 @@ function MysqlInsert($query) {
         }
     }
 }
-    
+
 function MysqlUpdate($query) {
 	if($query) {
 		global $Server;
 		return mysqli_query($Server->query, $query);
 	}
 }
-    
+
 function MysqlDelete($query) {
 	if($query) {
 		global $Server;
 		return mysqli_query($Server->query, $query);
 	}
 }
-    
+
 function MysqlEscape($query) {
 	if($query) {
 		global $Server;
@@ -98,7 +98,7 @@ function MysqlArray($query) {
 		return mysqli_fetch_array($query);
     }
 }
-    
+
 // ===================================
 // WHILE
 // ===================================
@@ -107,7 +107,7 @@ function MysqlAssoc($query) {
 		return mysqli_fetch_assoc($query);
 	}
 }
-    
+
 function MysqlNumRow($query) {
 	if($query) {
 		return mysqli_num_rows($query);
@@ -117,11 +117,11 @@ function MysqlNumRow($query) {
 // ===================================
 // MYSQL ERROR
 // ===================================
-function MysqlError() { 
+function MysqlError() {
 	global $Server;
 	return mysqli_error($Server->query);
 }
-    
+
 function MysqlErrno() {
 	global $Server;
 	return mysqli_errno($Server->query);

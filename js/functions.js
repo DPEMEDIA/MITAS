@@ -189,6 +189,10 @@ function checkReturn(response = false)
 			error[0] = true;
 			$("#checkAddReturnFirstname").show();
 			$("#checkAddReturnFirstname").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Vorname nicht gültig</div>");
+		} else if (firstname.length > 32){
+			error[0] = false;
+			$("#checkAddReturnFirstname").show();
+			$("#checkAddReturnFirstname").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Vorname nicht gültig</div>");
 		} else {
 			error[0] = false;
 			$("#checkAddReturnFirstname").show();
@@ -197,6 +201,10 @@ function checkReturn(response = false)
 
 		if(surname.length == 0) {
 			error[0] = true;
+			$("#checkAddReturnSurname").show();
+			$("#checkAddReturnSurname").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Nachname nicht gültig</div>");
+        } else if (surname.length > 32){
+			error[0] = false;
 			$("#checkAddReturnSurname").show();
 			$("#checkAddReturnSurname").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Nachname nicht gültig</div>");
 		} else {
@@ -277,7 +285,11 @@ function checkReturn(response = false)
 			error[0] = true;
 			$("#checkAddReturnBondate").show();
 			$("#checkAddReturnBondate").html("<div class='alert alert-danger mt-3 mb-0'><i class='fas fa-times-circle'></i> Bon-Datum nicht gültig</div>");
-		} else {
+        } else if(bonDateValidation(bondate) == false) {
+            error[0] = true;
+			$("#checkAddReturnBondate").show();
+            $("#checkAddReturnBondate").html("<div class='alert alert-danger mt-3 mb-0'><i class='fas fa-times-circle'></i> Bon-Datum - Format nicht gültig</div>");
+        } else {
 			error[0] = false;
 			$("#checkAddReturnBondate").show();
 			$("#checkAddReturnBondate").html("<div class='alert alert-success mt-3 mb-0'><i class='fas fa-check-circle'></i> Bon-Datum</div>");
@@ -285,6 +297,10 @@ function checkReturn(response = false)
 
 		if(product.length == 0) {
 			error[0] = true;
+			$("#checkAddReturnProduct").show();
+			$("#checkAddReturnProduct").html("<div class='alert alert-danger mt-3 mb-0'><i class='fas fa-times-circle'></i> Artikel nicht gültig</div>");
+        } else if (product.length > 255){
+			error[0] = false;
 			$("#checkAddReturnProduct").show();
 			$("#checkAddReturnProduct").html("<div class='alert alert-danger mt-3 mb-0'><i class='fas fa-times-circle'></i> Artikel nicht gültig</div>");
 		} else {
@@ -295,6 +311,10 @@ function checkReturn(response = false)
 
 		if(comment.length == 0) {
 			error[0] = true;
+			$("#checkAddReturnComment").show();
+			$("#checkAddReturnComment").html("<div class='alert alert-danger mt-3 mb-0'><i class='fas fa-times-circle'></i> Kommentar nicht gültig</div>");
+        } else if (comment.length > 255){
+			error[0] = false;
 			$("#checkAddReturnComment").show();
 			$("#checkAddReturnComment").html("<div class='alert alert-danger mt-3 mb-0'><i class='fas fa-times-circle'></i> Kommentar nicht gültig</div>");
 		} else {
@@ -431,6 +451,10 @@ function phoneValidation(phone) {
 
 function bonValidation(bon) {
 	return /^([0-9]{4,8})$/.test(bon);
+}
+
+function bonDateValidation(bonDate) {
+    return /^(\d{2}).(\d{2}).(\d{4})$/.test(bonDate);
 }
 
 function checkboxToggle(checkboxID, toggleID) {

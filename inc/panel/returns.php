@@ -8,7 +8,7 @@
 			</div>
 			<div class="card-body">
 				<?php
-				$getReturns = MysqlSelect("SELECT * FROM `ms_returns` WHERE `storeid` = '".MysqlEscape(getUserData("storeid"))."' ORDER BY `returnid` ASC LIMIT 25");
+				$getReturns = MysqlSelect("SELECT * FROM `ms_returns` WHERE `storeid` = '".MysqlEscape(getUserData("storeid"))."' ORDER BY `returnid` ASC LIMIT 15");
 				if(MysqlNumRow($getReturns)) {
 				?>
 				<div class="table-responsive table-list tableWithID">
@@ -33,7 +33,7 @@
 						</thead>
 						<tbody>
 						<?php
-						$getReturns = MysqlSelect("SELECT * FROM `ms_returns` WHERE `storeid` = '".MysqlEscape(getUserData("storeid"))."' ORDER BY `returnid` ASC LIMIT 25");
+						$getReturns = MysqlSelect("SELECT * FROM `ms_returns` WHERE `storeid` = '".MysqlEscape(getUserData("storeid"))."' ORDER BY `returnid` ASC LIMIT 15");
 						while($getReturnsData = MysqlAssoc($getReturns)) {
 						?>
 							<tr>
@@ -242,7 +242,7 @@
 							<div class="input-group">
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fas fa-list-ol"></i></span>
-									<span class="input-group-text bon-text"><?php echo getStoreData("short"); ?></span>
+									<span class="input-group-text bon-text"><?php echo getStoreData("short")."-"; ?></span>
 								</div>
 								<input type="text" placeholder="BON-Nr." maxlength="8" class="form-control" id="bonnr" name="bonnr">
 							</div>
@@ -263,7 +263,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-box"></i></span>
 							</div>
-							<input type="text" placeholder="Artikel" maxlength="50" class="form-control" id="product" name="product">
+							<input type="text" placeholder="Artikel" maxlength="255" class="form-control" id="product" name="product">
 						</div>
 						<div id="checkAddReturnProduct"></div>
 					</div>
