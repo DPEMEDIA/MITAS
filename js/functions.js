@@ -176,6 +176,7 @@ function checkReturn(response = false)
 			$("#checkAddReturnState").show();
 			$("#checkAddReturnState").html("<div class='alert alert-danger mb-3'><i class='fas fa-times-circle'></i> Status nicht gültig</div>");
 		} else if(state != "Offen" && state != "Ausgetauscht") {
+            error[0] = true;
 			$("#checkAddReturnState").show();
 			$("#checkAddReturnState").html("<div class='alert alert-danger mb-3'><i class='fas fa-times-circle'></i> Status nicht gültig</div>");
 		} else {
@@ -190,7 +191,7 @@ function checkReturn(response = false)
 			$("#checkAddReturnFirstname").show();
 			$("#checkAddReturnFirstname").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Vorname nicht gültig</div>");
 		} else if (firstname.length > 32){
-			error[0] = false;
+			error[0] = true;
 			$("#checkAddReturnFirstname").show();
 			$("#checkAddReturnFirstname").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Vorname nicht gültig</div>");
 		} else {
@@ -204,7 +205,7 @@ function checkReturn(response = false)
 			$("#checkAddReturnSurname").show();
 			$("#checkAddReturnSurname").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Nachname nicht gültig</div>");
         } else if (surname.length > 32){
-			error[0] = false;
+			error[0] = true;
 			$("#checkAddReturnSurname").show();
 			$("#checkAddReturnSurname").html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Nachname nicht gültig</div>");
 		} else {
@@ -300,7 +301,7 @@ function checkReturn(response = false)
 			$("#checkAddReturnProduct").show();
 			$("#checkAddReturnProduct").html("<div class='alert alert-danger mt-3 mb-0'><i class='fas fa-times-circle'></i> Artikel nicht gültig</div>");
         } else if (product.length > 255){
-			error[0] = false;
+			error[0] = true;
 			$("#checkAddReturnProduct").show();
 			$("#checkAddReturnProduct").html("<div class='alert alert-danger mt-3 mb-0'><i class='fas fa-times-circle'></i> Artikel nicht gültig</div>");
 		} else {
@@ -314,7 +315,7 @@ function checkReturn(response = false)
 			$("#checkAddReturnComment").show();
 			$("#checkAddReturnComment").html("<div class='alert alert-danger mt-3 mb-0'><i class='fas fa-times-circle'></i> Kommentar nicht gültig</div>");
         } else if (comment.length > 255){
-			error[0] = false;
+			error[0] = true;
 			$("#checkAddReturnComment").show();
 			$("#checkAddReturnComment").html("<div class='alert alert-danger mt-3 mb-0'><i class='fas fa-times-circle'></i> Kommentar nicht gültig</div>");
 		} else {
@@ -334,11 +335,11 @@ $(document).on("submit", "#returnForm", function (e)
 {
 	e.preventDefault();
 
-	if(checkReturn()) {
+if(checkReturn()) { // BUG LAST INPUT ONLY SENDS
 		var postData = $(this).serialize();
 
 		$.ajax({
-			url : "inc/async.php",
+			url : "inc/asc/returnAdd.php",
 			type: "post",
 			data : postData,
 			success: function(response) {
@@ -347,15 +348,17 @@ $(document).on("submit", "#returnForm", function (e)
 				var callBack = JSON.parse(response);
 
 				if(callBack.revert == true) {
-					alert('success');
-					// $("#returnAddModal").modal("hide");
+					// alert('success');
+					$("#returnAddModal").modal("hide");
+                    location.reload();
 				} else {
 					checkReturn(callBack);
 				}
 			}
 		});
 
-	}
+}
+
 });
 // ==========================================================================
 // ==========================================================================
@@ -365,7 +368,7 @@ $(document).on("submit", "#returnForm", function (e)
 function rowReturn(returnid)
 {
 	$.ajax({
-		url : "inc/async.php",
+		url : "inc/asc/returnEdit.php",
 		type: "post",
 		data: {getReturnId: returnid},
 		success: function(response) {
@@ -440,7 +443,7 @@ function resetReturn() {
 	$('#returnAddModal').find("#firstname, #surname, #email, #telefon, #bonnr, #bondate, #product, #comment").val('').end();
 	$('#returnAddModal').find("#checkAddReturnState, #checkAddReturnFirstname, #checkAddReturnSurname, #checkAddReturnEmTel, #checkAddReturnEmail, #checkAddReturnTelefon, #checkAddReturnBonnr, #checkAddReturnBondate, #checkAddReturnProduct, #checkAddReturnComment").hide();
 }
-// DEBBUGING ==================================================================================================
+// FUNCTIONS ==================================================================================================
 function emailValidation(email) {
     return /\S+@\S+\.\S+/.test(email);
 }
@@ -463,3 +466,32 @@ function checkboxToggle(checkboxID, toggleID) {
 	$(toggle).val('');
 	updateToggle = checkbox.checked ? toggle.disabled=true : toggle.disabled=false;
 }
+
+// DEBBUGING ==================================================================================================
+
+/*
+$(document).ready( function () {
+    $(document).ready(function(){
+       $('#returnTable').DataTable({
+          'processing': true,
+          'serverSide': true,
+          'serverMethod': 'post',
+          'ajax': {
+              'url':'inc/TESTTABLE.php'
+          },
+          'columns': [
+             { data: 'returnID' },
+             { data: 'returnDate' },
+             { data: 'returnFirstname' },
+             { data: 'returnLastname' },
+             { data: 'returnEmail' },
+             { data: 'returnProduct' },
+             { data: 'returnStatus' },
+             { data: 'returnPrint' },
+             { data: 'returnEdit' },
+             { data: 'returnDel' }
+          ]
+       });
+    });
+} );
+*/

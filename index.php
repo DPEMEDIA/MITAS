@@ -14,7 +14,10 @@ require_once("inc/functions.php");
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/bootstrap-treeview.css">
 		<link rel="stylesheet" href="css/bootstrap-datepicker.css">
 		<link type="image/x-icon" href="img/favicon.ico" rel="shortcut icon">
@@ -90,11 +93,14 @@ require_once("inc/functions.php");
 		</div>
 		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/bootstrap-treeview.js"></script>
+
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <?php if(checkLogin() && $_GET["include"] == "kis") { ?><script src="js/bootstrap-treeview.js"></script><?php } ?>
 		<script src="js/bootstrap-datepicker.js"></script>
 		<script src="js/bootstrap-datepicker.de.js"></script>
-		<script src="js/functions.js"></script>
+        <script src="js/functions.js"></script>
 		<?php if(checkLogin() && $_GET["include"] == "kis") { ?><script src="js/kis.js"></script><?php } ?>
 	</body>
 </html>

@@ -8,7 +8,7 @@
 			</div>
 			<div class="card-body">
 				<?php
-				$getReturns = MysqlSelect("SELECT * FROM `ms_returns` WHERE `storeid` = '".MysqlEscape(getUserData("storeid"))."' ORDER BY `returnid` ASC LIMIT 15");
+				$getReturns = MysqlSelect("SELECT * FROM `ms_returns`");
 				if(MysqlNumRow($getReturns)) {
 				?>
 				<div class="table-responsive table-list tableWithID">
@@ -33,7 +33,7 @@
 						</thead>
 						<tbody>
 						<?php
-						$getReturns = MysqlSelect("SELECT * FROM `ms_returns` WHERE `storeid` = '".MysqlEscape(getUserData("storeid"))."' ORDER BY `returnid` ASC LIMIT 15");
+						$getReturns = MysqlSelect("SELECT * FROM `ms_returns` WHERE `storeid` = '".MysqlEscape(getUserData("storeid"))."' ORDER BY `returnid` ASC LIMIT 150");
 						while($getReturnsData = MysqlAssoc($getReturns)) {
 						?>
 							<tr>
@@ -131,7 +131,6 @@
 			</div>
 			<form method="POST" name="return" id="returnForm">
 				<div class="modal-body">
-					<div id="checkReturnError"></div>
 					<p><b>Infos</b></p>
 					<div class="row">
 					<div class="form-group state-change col-md-3">
@@ -140,11 +139,11 @@
 								<label class="input-group-text" for="state"><i class="fas fa-info-circle"></i></label>
 							</div>
 							<select class="custom-select" id="state" name="state">
-								<option disabled selected>Status</option>
-								<option disabled>==================</option>
+								<option value="" disabled selected>Status</option>
+								<option value="" disabled>==================</option>
 								<option value="Offen">Offen</option>
 								<option value="Ausgetauscht">Ausgetauscht</option>
-								<option disabled>==================</option>
+								<option value="" disabled>==================</option>
 							</select>
 						</div>
 					</div>
