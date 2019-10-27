@@ -1,4 +1,5 @@
 <?php
+//
 // Load Config
 require_once("inc/config.php");
 // Load Functions
