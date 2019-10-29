@@ -28,52 +28,52 @@ if($_POST["state"] != "" && !empty($_POST["firstname"]) && !empty($_POST["surnam
     // Email & Phone
 	if($_POST["noemail"] == false && $_POST["nophone"] == false) {
 
-			if(!empty($_POST["email"]) && !empty($_POST["telefon"])) {
-                if(!emailValidation($_POST["email"]) || !phoneValidation($_POST["telefon"])) {
-                    $Response->error = true;
-    				$Response->grund = 'wrong emtel format';
-                }
-			} else {
-				$Response->error = true;
-				$Response->grund = 'empty emtel';
-			}
-
-	} else {
-		if($_POST["noemail"] == false && $_POST["nophone"] == true) {
-
-            $_POST["telefon"] = "-";
-
-			if(!empty($_POST["email"])) {
-                if(!emailValidation($_POST["email"])) {
-                    $Response->error = true;
-					$Response->grund = 'wrong email format';
-                }
-			} else {
-				$Response->error = true;
-				$Response->grund = 'empty email';
-			}
-		}
-
-		if($_POST["noemail"] == true && $_POST["nophone"] == false) {
-
-            $_POST["email"] = "-";
-
-            if(!empty($_POST["telefon"])) {
-                if(!phoneValidation($_POST["telefon"])) {
-                    $Response->error = true;
-                    $Response->grund = 'wrong telefon format';
-                }
-            } else {
+		if(!empty($_POST["email"]) && !empty($_POST["telefon"])) {
+            if(!emailValidation($_POST["email"]) || !phoneValidation($_POST["telefon"])) {
                 $Response->error = true;
-                $Response->grund = 'empty telefon';
+    			$Response->grund = 'wrong emtel format';
             }
+		} else {
+			$Response->error = true;
+			$Response->grund = 'empty emtel';
 		}
 
-        if($_POST["noemail"] == true && $_POST["nophone"] == true) {
-            $_POST["telefon"] = "-";
-            $_POST["email"] = "-";
+	}
+
+	if($_POST["noemail"] == false && $_POST["nophone"] == true) {
+
+        $_POST["telefon"] = "-";
+
+		if(!empty($_POST["email"])) {
+            if(!emailValidation($_POST["email"])) {
+                $Response->error = true;
+				$Response->grund = 'wrong email format';
+            }
+		} else {
+			$Response->error = true;
+			$Response->grund = 'empty email';
+		}
+	}
+
+	if($_POST["noemail"] == true && $_POST["nophone"] == false) {
+
+        $_POST["email"] = "-";
+
+        if(!empty($_POST["telefon"])) {
+            if(!phoneValidation($_POST["telefon"])) {
+                $Response->error = true;
+                $Response->grund = 'wrong telefon format';
+            }
+        } else {
+            $Response->error = true;
+            $Response->grund = 'empty telefon';
         }
 	}
+
+	if($_POST["noemail"] == true && $_POST["nophone"] == true) {
+        $_POST["telefon"] = "-";
+        $_POST["email"] = "-";
+    }
 
     // Bon Number
     if(!bonValidation($_POST["bonnr"])) {

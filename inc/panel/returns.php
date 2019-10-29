@@ -193,7 +193,6 @@
 								</div>
 								<input type="text" placeholder="Vorname" maxlength="32" class="form-control" id="firstname" name="firstname">
 							</div>
-
 						</div>
 						<div class="form-group col-md-3">
 							<div class="input-group">
@@ -202,7 +201,6 @@
 								</div>
 								<input type="text" placeholder="Nachname" maxlength="32" class="form-control" id="surname" name="surname">
 							</div>
-
 						</div>
 
 						<div class="form-group emtel-change col-md-3">
@@ -212,7 +210,6 @@
 								</div>
 								<input type="text" placeholder="E-Mail" maxlength="64" class="form-control" id="email" name="email">
 							</div>
-
 						</div>
 						<div class="form-group emtel-change col-md-3">
 							<div class="input-group">
@@ -221,7 +218,6 @@
 								</div>
 								<input type="tel" placeholder="+43" maxlength="16" class="form-control" id="telefon" name="telefon">
 							</div>
-
 						</div>
 
 					</div>
@@ -245,7 +241,6 @@
 								</div>
 								<input type="text" placeholder="BON-Nr." maxlength="8" class="form-control" id="bonnr" name="bonnr">
 							</div>
-							<div id="checkAddReturnBonnr"></div>
 						</div>
 						<div class="form-group col-md-6">
 							<div class="input-group">
@@ -254,9 +249,15 @@
 								</div>
 								<input type="text" placeholder="TT.MM.JJJJ" maxlength="10" data-provide="datepicker" data-date-language="de" class="form-control" id="bondate" name="bondate">
 							</div>
-							<div id="checkAddReturnBondate"></div>
 						</div>
+					</div>
 
+					<div class="row">
+						<div class="col-md-6" id="checkAddReturnBonnr"></div>
+						<div class="col-md-6" id="checkAddReturnBondate"></div>
+					</div>
+
+					<div class="row">
 					<div class="form-group col-md-6">
 						<div class="input-group">
 							<div class="input-group-prepend">
@@ -264,7 +265,6 @@
 							</div>
 							<input type="text" placeholder="Artikel" maxlength="255" class="form-control" id="product" name="product">
 						</div>
-						<div id="checkAddReturnProduct"></div>
 					</div>
 					<div class="form-group col-md-6">
 						<div class="input-group">
@@ -273,9 +273,14 @@
 							</div>
 							<input type="text" placeholder="Kommentar" maxlength="255" class="form-control" id="comment" name="comment">
 						</div>
-						<div id="checkAddReturnComment"></div>
 					</div>
 				</div>
+
+				<div class="row">
+					<div class="col-md-6" id="checkAddReturnProduct"></div>
+					<div class="col-md-6" id="checkAddReturnComment"></div>
+				</div>
+
 				<div class="modal-footer" style="display:block !important;">
 					<div class="btn-group d-flex" role="group" aria-label="Retour anlegen">
 						<button type="submit" class="btn btn-success w-100"><i class="fas fa-share"></i> Retour anlegen</button>
