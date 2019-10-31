@@ -164,34 +164,23 @@ function checkReturn(response = false)
 	var product		= $.trim($("#product").val());
 	var comment		= $.trim($("#comment").val());
 
-	if(response == false || response.error == true) {
-	// 	if(response == false || (response.error == true && response.grund == 'empty')) {
-
-		var error = ['true'];
+	if(response == false || (response.error == true && response.reason == 'empty')) {
 
 		if(state.length == 0 || state == "Status" || (state != "Offen" && state != "Ausgetauscht")) {
-			error[0] = true;
-			// $(".state-change").addClass("mb-0");
 			$("#checkAddReturnState").show().html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Status nicht gültig</div>");
 		} else {
-			error[0] = false;
-			// $(".state-change").addClass("mb-0");
 			$("#checkAddReturnState").show().html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> Status</div>");
 		}
 
 		if(firstname.length == 0 || firstname.length > 32) {
-			error[0] = true;
 			$("#checkAddReturnFirstname").show().html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Vorname nicht gültig</div>");
 		}  else {
-			error[0] = false;
 			$("#checkAddReturnFirstname").show().html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> Vorname</div>");
 		}
 
 		if(surname.length == 0 || surname.length > 32) {
-			error[0] = true;
 			$("#checkAddReturnSurname").show().html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Nachname nicht gültig</div>");
         } else {
-			error[0] = false;
 			$("#checkAddReturnSurname").show().html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> Nachname</div>");
 		}
 
@@ -202,32 +191,25 @@ function checkReturn(response = false)
 
 		if(noemail.checked == false) {
         if(email.length == 0 || emailValidation(email) == false) {
-            error[0] = true;
             $("#checkAddReturnEmail").show().html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> E-Mail nicht gültig</div>");
         } else {
-            error[0] = false;
 			$("#checkAddReturnEmail").show().html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> E-Mail</div>");
         }
 		} else {
-			error[0] = false;
 			$("#checkAddReturnEmail").show().html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> E-Mail</div>");
 		}
 
 		if(nophone.checked == false) {
         if(telefon.length == 0 || phoneValidation(telefon) == false) {
-            error[0] = true;
             $("#checkAddReturnTelefon").show().html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Telefon nicht gültig</div>");
         } else {
-            error[0] = false;
 			$("#checkAddReturnTelefon").show().html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> Telefon</div>");
         }
 		} else {
-			error[0] = false;
 			$("#checkAddReturnTelefon").show().html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> Telefon</div>");
 		}
 
 		} else {
-			error[0] = false;
 			$("#checkAddReturnEmail").hide();
 			$("#checkAddReturnTelefon").hide();
 			$("#checkAddReturnEmTel").show().html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> E-Mail / Telefon</div>");
@@ -235,40 +217,30 @@ function checkReturn(response = false)
 		// IF EMAIL OR TELEFON IS EMPTY...
 
 		if(bonnr.length == 0 || bonValidation(bonnr) == false) {
-			error[0] = true;
 			$("#checkAddReturnBonnr").show().html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Bon-Nr. nicht gültig</div>");
 		} else {
-			error[0] = false;
 			$("#checkAddReturnBonnr").show().html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> Bon-Nr.</div>");
 		}
 
 		if(bondate.length == 0 || bonDateValidation(bondate) == false) {
-			error[0] = true;
 			$("#checkAddReturnBondate").show().html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Bon-Datum nicht gültig</div>");
         } else {
-			error[0] = false;
 			$("#checkAddReturnBondate").show().html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> Bon-Datum</div>");
 		}
 
 		if(product.length == 0 || product.length > 255) {
-			error[0] = true;
 			$("#checkAddReturnProduct").show().html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Artikel nicht gültig</div>");
         } else {
-			error[0] = false;
 			$("#checkAddReturnProduct").show().html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> Artikel</div>");
 		}
 
 		if(comment.length == 0 || comment.length > 255) {
-			error[0] = true;
 			$("#checkAddReturnComment").show().html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Kommentar nicht gültig</div>");
         } else {
-			error[0] = false;
 			$("#checkAddReturnComment").show().html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> Kommentar</div>");
 		}
 
-		if(error[0] == false) {
-			return true;
-		}
+		return true
 
 	}
 
@@ -280,7 +252,7 @@ $(document).on("submit", "#returnForm", function (e)
 
 	if(checkReturn()) {
 
-		var postData = $(this).serialize();
+	var postData = $(this).serialize();
 
 		$.ajax({
 			url : "inc/asc/returnAdd.php",
@@ -297,7 +269,6 @@ $(document).on("submit", "#returnForm", function (e)
                     location.reload();
 				} else {
 					checkReturn();
-					console.log(callBack); // ?????????????
 				}
 			}
 		});

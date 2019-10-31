@@ -4,7 +4,7 @@ include("functions.php");
 // =================================================
 $Response = (object) array(
 	'error' => false,
-	'grund' => 'none',
+	'reason' => 'none',
 	'revert' => false,
 );
 
@@ -16,13 +16,13 @@ if($_POST["state"] != "" && !empty($_POST["firstname"]) && !empty($_POST["surnam
     // Status
     if($_POST["state"] != "Offen" && $_POST["state"] != "Ausgetauscht") {
         $Response->error = true;
-        $Response->grund = 'wrong status format';
+        $Response->reason = 'wrong status format';
     }
 
     // Names
     if(strlen($_POST["firstname"]) > 32 || strlen($_POST["surname"]) > 32) {
         $Response->error = true;
-        $Response->grund = 'long names';
+        $Response->reason = 'long names';
     }
 
     // Email & Phone
@@ -31,11 +31,11 @@ if($_POST["state"] != "" && !empty($_POST["firstname"]) && !empty($_POST["surnam
 		if(!empty($_POST["email"]) && !empty($_POST["telefon"])) {
             if(!emailValidation($_POST["email"]) || !phoneValidation($_POST["telefon"])) {
                 $Response->error = true;
-    			$Response->grund = 'wrong emtel format';
+    			$Response->reason = 'wrong emtel format';
             }
 		} else {
 			$Response->error = true;
-			$Response->grund = 'empty emtel';
+			$Response->reason = 'empty emtel';
 		}
 
 	}
@@ -47,11 +47,11 @@ if($_POST["state"] != "" && !empty($_POST["firstname"]) && !empty($_POST["surnam
 		if(!empty($_POST["email"])) {
             if(!emailValidation($_POST["email"])) {
                 $Response->error = true;
-				$Response->grund = 'wrong email format';
+				$Response->reason = 'wrong email format';
             }
 		} else {
 			$Response->error = true;
-			$Response->grund = 'empty email';
+			$Response->reason = 'empty email';
 		}
 	}
 
@@ -62,11 +62,11 @@ if($_POST["state"] != "" && !empty($_POST["firstname"]) && !empty($_POST["surnam
         if(!empty($_POST["telefon"])) {
             if(!phoneValidation($_POST["telefon"])) {
                 $Response->error = true;
-                $Response->grund = 'wrong telefon format';
+                $Response->reason = 'wrong telefon format';
             }
         } else {
             $Response->error = true;
-            $Response->grund = 'empty telefon';
+            $Response->reason = 'empty telefon';
         }
 	}
 
@@ -78,19 +78,19 @@ if($_POST["state"] != "" && !empty($_POST["firstname"]) && !empty($_POST["surnam
     // Bon Number
     if(!bonValidation($_POST["bonnr"])) {
         $Response->error = true;
-        $Response->grund = 'wrong bonnr format';
+        $Response->reason = 'wrong bonnr format';
     }
 
     // Bon Date
     if(!bonDateValidation($_POST["bondate"])) {
         $Response->error = true;
-        $Response->grund = 'wrong bondate format';
+        $Response->reason = 'wrong bondate format';
     }
 
     // Product / Comment
     if(strlen($_POST["product"]) > 255 || strlen($_POST["comment"]) > 255) {
         $Response->error = true;
-        $Response->grund = 'long strings';
+        $Response->reason = 'long strings';
     }
 
     if($Response->error == false) {
@@ -109,7 +109,7 @@ if($_POST["state"] != "" && !empty($_POST["firstname"]) && !empty($_POST["surnam
 
 } else {
 	$Response->error = true;
-	$Response->grund = 'empty';
+	$Response->reason = 'empty';
 }
 
 	echo json_encode($Response);
