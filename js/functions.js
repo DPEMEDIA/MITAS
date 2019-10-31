@@ -385,29 +385,38 @@ function checkboxToggle(checkboxID, toggleID) {
 
 // DEBBUGING ==================================================================================================
 
-/*
+
 $(document).ready( function () {
     $(document).ready(function(){
        $('#returnTable').DataTable({
-          'processing': true,
-          'serverSide': true,
-          'serverMethod': 'post',
-          'ajax': {
-              'url':'inc/asc/TESTTABLE.php'
-          },
-          'columns': [
-             { data: 'returnID' },
-             { data: 'returnDate' },
-             { data: 'returnFirstname' },
-             { data: 'returnLastname' },
-             { data: 'returnEmail' },
-             { data: 'returnProduct' },
-             { data: 'returnStatus' },
-             { data: 'returnPrint' },
-             { data: 'returnEdit' },
-             { data: 'returnDel' }
-          ]
-       });
-    });
-} );
-*/
+		   language: {
+		   url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
+	   	},
+		processing: true,
+		ajax: {
+			url:	'inc/asc/TESTTABLE.php',
+			type:	'POST'
+		},
+    	columns: [
+        { data: 'returnid' },
+        { data: 'dateofreturn' },
+        { data: 'firstname' },
+        { data: 'lastname' },
+        { data: 'email' },
+        { data: 'product' },
+        { data: 'status' },
+        { data: null,
+			defaultContent: '<i class="fas fa-print" id="drucker"></i>'
+		},
+		{ data: 'returnid',
+			render: function(data, row, type) {
+              return '<i class="fas fa-edit" id="edit" onclick="rowReturn('+data+');"></i>';
+            }
+		},
+		{ data: null,
+			defaultContent: '<input class="form-check-input position-static" type="checkbox" id="returnCheck" name="returnCheck">'
+		},
+        ]
+		});
+	});
+});
