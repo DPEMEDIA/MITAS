@@ -12,7 +12,7 @@
 				if(MysqlNumRow($getReturns)) {
 				?>
 				<div class="table-responsive table-list tableWithID">
-					<table class="table table-returns table-hover table-bordered mb-0">
+					<table class="table table-returns table-hover table-bordered mb-0" id="returnTable">
 						<thead>
 							<tr>
 								<th scope="col">Nr.</th>

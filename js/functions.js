@@ -393,7 +393,7 @@ $(document).ready( function () {
           'serverSide': true,
           'serverMethod': 'post',
           'ajax': {
-              'url':'inc/TESTTABLE.php'
+              'url':'inc/asc/TESTTABLE.php'
           },
           'columns': [
              { data: 'returnID' },
