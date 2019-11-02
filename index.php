@@ -19,6 +19,7 @@ require_once("inc/functions.php");
 
 
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" href="css/jquery-datatables.css">
 
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">

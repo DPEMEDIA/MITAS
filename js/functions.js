@@ -412,19 +412,22 @@ $(document).ready( function () {
         { data: 'product' },
         { data: 'status' },
         { data: null,
+			className: 'dt-center',
 			defaultContent: '<i class="fas fa-print" id="drucker"></i>',
 			orderable: false
 		},
 		{ data: 'returnid',
+			className: 'dt-center',
 			render: function(data) {
               return '<i class="fas fa-edit" id="edit" onclick="rowReturn('+data+');"></i>';
 		  },
 		  orderable: false
 		},
 		{ data: null,
-			defaultContent: '<input class="form-check-input position-static" type="checkbox" id="returnCheck" name="returnCheck">',
+			className: 'dt-center',
+			defaultContent: '<input type="checkbox" id="returnCheck" name="returnCheck">',
 			orderable: false
-		},
+		}
         ]
 		});
 	});
