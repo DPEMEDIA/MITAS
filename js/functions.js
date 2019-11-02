@@ -399,22 +399,31 @@ $(document).ready( function () {
 		},
     	columns: [
         { data: 'returnid' },
-        { data: 'dateofreturn' },
+        { data: 'dateofreturn',
+			render: function (data) {
+				var date = new Date(data);
+				var month = date.getMonth() + 1;
+				return date.getDate() + "." + (month.toString().length > 1 ? month : "0" + month) + "." + date.getFullYear();
+			}
+		},
         { data: 'firstname' },
         { data: 'lastname' },
         { data: 'email' },
         { data: 'product' },
         { data: 'status' },
         { data: null,
-			defaultContent: '<i class="fas fa-print" id="drucker"></i>'
+			defaultContent: '<i class="fas fa-print" id="drucker"></i>',
+			orderable: false
 		},
 		{ data: 'returnid',
-			render: function(data, row, type) {
+			render: function(data) {
               return '<i class="fas fa-edit" id="edit" onclick="rowReturn('+data+');"></i>';
-            }
+		  },
+		  orderable: false
 		},
 		{ data: null,
-			defaultContent: '<input class="form-check-input position-static" type="checkbox" id="returnCheck" name="returnCheck">'
+			defaultContent: '<input class="form-check-input position-static" type="checkbox" id="returnCheck" name="returnCheck">',
+			orderable: false
 		},
         ]
 		});
