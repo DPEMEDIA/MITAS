@@ -387,30 +387,48 @@ function checkboxToggle(checkboxID, toggleID) {
 
 
 $(document).ready( function () {
-    $(document).ready(function(){
-       $('#returnTable').DataTable({
+
+	// Bootstrap Responsive
+	if($(window).width() > 1000) {
+		// Kindle
+		if($(window).width() == 800 && $(window).height() == 1280) {
+			$("#tableResponsive").addClass("table-responsive");
+		} else {
+			$("#tableResponsive").removeClass("table-responsive");
+		}
+	} else {
+		$("#tableResponsive").addClass("table-responsive");
+	}
+
+		var dataTable = $('#returnTable').DataTable({
 		   language: {
-		   url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
+		   url: "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
 	   	},
 		processing: true,
 		ajax: {
 			url:	'inc/asc/TESTTABLE.php',
 			type:	'POST'
 		},
+		order: [],
     	columns: [
-        { data: 'returnid' },
+        { data: null,
+			className: 'dt-center',
+			defaultContent: '',
+			orderable: false
+		},
         { data: 'dateofreturn',
 			render: function (data) {
 				var date = new Date(data);
 				var month = date.getMonth() + 1;
-				return date.getDate() + "." + (month.toString().length > 1 ? month : "0" + month) + "." + date.getFullYear();
+				return ("0" + date.getDate()).slice(-2) + "." + (month.toString().length > 1 ? month : "0" + month) + "." + date.getFullYear();
 			}
 		},
         { data: 'firstname' },
         { data: 'lastname' },
-        { data: 'email' },
+        { data: 'telefon' },
         { data: 'product' },
-        { data: 'status' },
+        { data: 'status',
+			className: 'dt-center' },
         { data: null,
 			className: 'dt-center',
 			defaultContent: '<i class="fas fa-print" id="drucker"></i>',
@@ -419,9 +437,9 @@ $(document).ready( function () {
 		{ data: 'returnid',
 			className: 'dt-center',
 			render: function(data) {
-              return '<i class="fas fa-edit" id="edit" onclick="rowReturn('+data+');"></i>';
-		  },
-		  orderable: false
+	        	return '<i class="fas fa-edit" id="edit" onclick="rowReturn('+data+');"></i>';
+		  	},
+		  	orderable: false
 		},
 		{ data: null,
 			className: 'dt-center',
@@ -430,5 +448,18 @@ $(document).ready( function () {
 		}
         ]
 		});
-	});
+
+
+		dataTable.on( 'order.dt search.dt', function () {
+			var rows = dataTable.rows().count();
+	        dataTable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+	            cell.innerHTML = rows--;
+	        });
+    	}).draw();
+
+		// Double Click To Reset the Sorting
+		$(".btn-danger").click(function() {
+			dataTable.draw().order( [[ 8, 'desc' ]] );
+			alert("nani");
+		});
 });

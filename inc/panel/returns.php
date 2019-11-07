@@ -11,7 +11,7 @@
 				$getReturns = MysqlSelect("SELECT * FROM `ms_returns`");
 				if(MysqlNumRow($getReturns)) {
 				?>
-				<div class="table-responsive table-list tableWithID">
+				<div class="table-list tableWithID" id="tableResponsive">
 					<table class="table table-returns table-hover table-bordered mb-0" id="returnTable">
 						<thead>
 							<tr>
@@ -19,7 +19,7 @@
 								<th scope="col">Datum</th>
 								<th scope="col">Vorname</th>
 								<th scope="col">Nachname</th>
-								<th scope="col">E-Mail</th>
+								<th scope="col">Telefon</th>
 								<th scope="col">Artikel</th>
 								<th scope="col">Status</th>
 								<th scope="col">Drucken</th>
@@ -58,6 +58,8 @@
 						</tbody>
 					</table>
 				</div>
+				<?php
+				/*
 				<!-- Pagination -->
 				<div class="row mt-4 mb-0">
 					<!-- Pagination -->
@@ -96,6 +98,7 @@
 					</div>
 				</div>
 				<?php
+				*/
 				} else {
 				?>
 				<b>Keine Einträge vorhanden.</b>
