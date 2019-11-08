@@ -20,8 +20,8 @@ require_once("inc/functions.php");
 
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 		<link rel="stylesheet" href="css/jquery-datatables.css">
-		<!-- DataTables Checkbox -->
-		<link rel="stylesheet" href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css">
+
+
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/bootstrap-treeview.css">
@@ -103,8 +103,7 @@ require_once("inc/functions.php");
 
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 		<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-		<!-- DataTables Checkbox -->
-		<script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js" crossorigin="anonymous"></script>
+
 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <?php if(checkLogin() && $_GET["include"] == "kis") { ?><script src="js/bootstrap-treeview.js"></script><?php } ?>

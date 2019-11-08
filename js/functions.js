@@ -426,17 +426,6 @@ $(document).ready( function () {
 			url:	'inc/asc/TESTTABLE.php',
 			type:	'POST'
 		},
-		columnDefs: [
-		{
-			targets: -1,
-			data: 0,
-			checkboxes: {
-				selectRow: true
-			}
-		}],
-		select: {
-      		style: 'multi'
-   		},
 		order: [[ 0, "desc" ]],
     	columns: [
         { data: 'returnid',
@@ -496,9 +485,11 @@ $(document).ready( function () {
 		  	orderable: false
 		},
 		{ data: null,
-			className: 'dt-center'
+			className: 'dt-center',
+			defaultContent: '<input type="checkbox" id="returnCheck" name="returnCheck">',
+			orderable: false
 		}]
-		});
+	});
 });
 
 function shortString(input) {
