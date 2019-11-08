@@ -88,7 +88,7 @@ if($_POST["state"] != "" && !empty($_POST["firstname"]) && !empty($_POST["surnam
     }
 
     // Product / Comment
-    if(strlen($_POST["product"]) > 255 || strlen($_POST["comment"]) > 255) {
+    if(strlen($_POST["product"]) > 32 || strlen($_POST["comment"]) > 255) {
         $Response->error = true;
         $Response->reason = 'long strings';
     }

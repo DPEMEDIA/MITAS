@@ -7,15 +7,11 @@
 				<span class="float-right"><i class="fas fa-question-circle" data-toggle="tooltip" data-html="true" title="Eine Übersicht der Retouren deiner Filiale."></i></span>
 			</div>
 			<div class="card-body">
-				<?php
-				$getReturns = MysqlSelect("SELECT * FROM `ms_returns`");
-				if(MysqlNumRow($getReturns)) {
-				?>
 				<div class="table-list tableWithID" id="tableResponsive">
 					<table class="table table-returns table-hover table-bordered mb-0" id="returnTable">
 						<thead>
 							<tr>
-								<th scope="col">Nr.</th>
+								<th scope="col">ID</th>
 								<th scope="col">Datum</th>
 								<th scope="col">Vorname</th>
 								<th scope="col">Nachname</th>
@@ -31,80 +27,8 @@
 								</th>
 							</tr>
 						</thead>
-						<tbody>
-						<?php
-						$getReturns = MysqlSelect("SELECT * FROM `ms_returns` WHERE `storeid` = '".MysqlEscape(getUserData("storeid"))."' ORDER BY `returnid` ASC LIMIT 150");
-						while($getReturnsData = MysqlAssoc($getReturns)) {
-						?>
-							<tr>
-								<th scope="row"><?php if(!isset($number)) { $number = 1; } echo $number++; ?></th>
-								<td><?php echo date("d.m.Y", strtotime($getReturnsData["dateofreturn"])); ?></td>
-								<td><?php if(strlen($getReturnsData["firstname"]) > 8) { echo substr($getReturnsData["firstname"], 0, 5)."..."; } else { echo $getReturnsData["firstname"]; } ?></td>
-								<td><?php if(strlen($getReturnsData["lastname"]) > 8) { echo substr($getReturnsData["lastname"], 0, 5)."..."; } else { echo $getReturnsData["lastname"]; } ?></td>
-								<td><?php if(strlen($getReturnsData["telefon"]) > 13) {  echo substr($getReturnsData["telefon"], 0, 13)."..."; } else { echo $getReturnsData["telefon"]; } ?></td>
-								<td><?php if(strlen($getReturnsData["product"]) > 20) { echo substr($getReturnsData["product"], 0, 20)."..."; } else { echo $getReturnsData["product"]; } ?></td>
-								<td><?php echo $getReturnsData["status"]; ?></td>
-								<td class="text-center"><i class="fas fa-print" id="drucker"></i></td>
-								<td class="text-center"><i class="fas fa-edit" id="edit" onclick="rowReturn(<?php echo $getReturnsData["returnid"]; ?>);"></i></td>
-								<td>
-									<div class="form-check text-center">
-										<input class="form-check-input position-static" type="checkbox" id="returnCheck" name="returnCheck">
-									</div>
-								</td>
-							</tr>
-						<?php
-						}
-						?>
-						</tbody>
 					</table>
 				</div>
-				<?php
-				/*
-				<!-- Pagination -->
-				<div class="row mt-4 mb-0">
-					<!-- Pagination -->
-					<div class="col-6 col-md-6">
-						<nav aria-label="Pagination">
-							<ul class="pagination mb-0">
-								<li class="page-item">
-									<a class="page-link" href="#" aria-label="Previous">
-										<span aria-hidden="true">&laquo;</span>
-										<span class="sr-only">Previous</span>
-									</a>
-								</li>
-								<li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item">
-									<a class="page-link" href="#" aria-label="Next">
-										<span aria-hidden="true">&raquo;</span>
-										<span class="sr-only">Next</span>
-									</a>
-								</li>
-							</ul>
-						</nav>
-					</div>
-					<!-- Sitenation -->
-					<div class="col-6 col-md-6">
-						<nav aria-label="Sitenation">
-							<ul class="pagination mb-0 justify-content-end sitenation">
-								<li class="page-item">
-									<span class="page-link">Seite</span>
-								</li>
-								<li class="page-item">
-									<span class="page-link">1 von 5</span>
-								</li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-				<?php
-				*/
-				} else {
-				?>
-				<b>Keine Einträge vorhanden.</b>
-				<?php
-				}
-				?>
 			</div>
 		</div>
 	</div>
@@ -117,8 +41,8 @@
 		</button>
 	</div>
 	<div class="col-md-6 mt-4">
-		<button type="button" class="btn btn-block btn-danger">
-			<i class="fas fa-trash"></i> Markierte löschen?
+		<button type="submit" class="btn btn-block btn-danger">
+			<i class="fas fa-trash"></i> Markierung löschen?
 		</button>
 	</div>
 </div>
@@ -211,7 +135,7 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fas fa-at"></i></span>
 								</div>
-								<input type="text" placeholder="E-Mail" maxlength="64" class="form-control" id="email" name="email">
+								<input type="text" placeholder="E-Mail" maxlength="32" class="form-control" id="email" name="email">
 							</div>
 						</div>
 						<div class="form-group emtel-change col-md-3">
@@ -266,7 +190,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-box"></i></span>
 							</div>
-							<input type="text" placeholder="Artikel" maxlength="255" class="form-control" id="product" name="product">
+							<input type="text" placeholder="Artikel" maxlength="32" class="form-control" id="product" name="product">
 						</div>
 					</div>
 					<div class="form-group col-md-6">

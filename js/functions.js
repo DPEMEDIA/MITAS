@@ -228,7 +228,7 @@ function checkReturn(response = false)
 			$("#checkAddReturnBondate").show().html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> Bon-Datum</div>");
 		}
 
-		if(product.length == 0 || product.length > 255) {
+		if(product.length == 0 || product.length > 32) {
 			$("#checkAddReturnProduct").show().html("<div class='alert alert-danger'><i class='fas fa-times-circle'></i> Artikel nicht gültig</div>");
         } else {
 			$("#checkAddReturnProduct").show().html("<div class='alert alert-success'><i class='fas fa-check-circle'></i> Artikel</div>");
@@ -285,6 +285,23 @@ function rowReturn(returnid)
 {
 	$.ajax({
 		url : "inc/asc/returnEdit.php",
+		type: "post",
+		data: {getReturnId: returnid},
+		success: function(response) {
+			$(".container").after("<div id='testo'></div>");
+			$("#testo").html(response);
+			$("#testo > #ttt").modal("show").on('hidden.bs.modal', function () {
+				$("#testo").remove();
+				// $('.table-returns tbody tr').removeClass("testbg");
+			});
+		}
+	});
+}
+
+function printReturn(returnid)
+{
+	$.ajax({
+		url : "inc/asc/returnShow.php",
 		type: "post",
 		data: {getReturnId: returnid},
 		success: function(response) {
@@ -409,30 +426,67 @@ $(document).ready( function () {
 			url:	'inc/asc/TESTTABLE.php',
 			type:	'POST'
 		},
-		order: [],
+		columnDefs: [
+		{
+			targets: -1,
+			data: 0,
+			checkboxes: {
+				selectRow: true
+			}
+		}],
+		select: {
+      		style: 'multi'
+   		},
+		order: [[ 0, "desc" ]],
     	columns: [
-        { data: null,
-			className: 'dt-center',
-			defaultContent: '',
-			orderable: false
+        { data: 'returnid',
+			className: 'dt-center'
 		},
         { data: 'dateofreturn',
 			render: function (data) {
 				var date = new Date(data);
 				var month = date.getMonth() + 1;
 				return ("0" + date.getDate()).slice(-2) + "." + (month.toString().length > 1 ? month : "0" + month) + "." + date.getFullYear();
+			},
+			className: 'dt-center'
+		},
+        { data: 'firstname',
+			render: function(data) {
+				return shortString(data);
 			}
 		},
-        { data: 'firstname' },
-        { data: 'lastname' },
+        { data: 'lastname',
+			render: function(data) {
+				return shortString(data);
+			} },
         { data: 'telefon' },
-        { data: 'product' },
+        { data: 'product',
+			render: function(data) {
+				return shortString(data);
+			} },
         { data: 'status',
-			className: 'dt-center' },
-        { data: null,
 			className: 'dt-center',
-			defaultContent: '<i class="fas fa-print" id="drucker"></i>',
-			orderable: false
+			render: function(data) {
+				var color = 'text-dark';
+				if (data == "Abgeschlossen")
+					color = 'text-success';
+				if (data == "Ausgetauscht")
+					color = 'text-success';
+				if (data == "Kein Rückmeldung")
+					color = 'text-success';
+				if (data == "In Bearbeitung")
+					color = 'text-info';
+				if (data == "Offen")
+					color = 'text-danger';
+				return '<span class="' + color + '">' + data + '</span>';
+			 }
+		},
+        { data: 'returnid',
+			className: 'dt-center',
+			render: function(data) {
+	        	return '<i class="fas fa-print" id="drucker" onclick="printReturn('+data+');"></i>';
+		  	},
+		  	orderable: false
 		},
 		{ data: 'returnid',
 			className: 'dt-center',
@@ -442,24 +496,15 @@ $(document).ready( function () {
 		  	orderable: false
 		},
 		{ data: null,
-			className: 'dt-center',
-			defaultContent: '<input type="checkbox" id="returnCheck" name="returnCheck">',
-			orderable: false
-		}
-        ]
-		});
-
-
-		dataTable.on( 'order.dt search.dt', function () {
-			var rows = dataTable.rows().count();
-	        dataTable.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-	            cell.innerHTML = rows--;
-	        });
-    	}).draw();
-
-		// Double Click To Reset the Sorting
-		$(".btn-danger").click(function() {
-			dataTable.draw().order( [[ 8, 'desc' ]] );
-			alert("nani");
+			className: 'dt-center'
+		}]
 		});
 });
+
+function shortString(input) {
+	if (input.length > 8) {
+		return input.substring(0, 8) + '...';
+	} else {
+		return input;
+	}
+}

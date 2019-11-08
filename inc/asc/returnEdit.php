@@ -83,7 +83,7 @@ $rowUser = MysqlArray(MysqlSelect("SELECT * FROM ms_users WHERE userid = '".Mysq
 <div class="input-group-prepend">
 <span class="input-group-text"><i class="fas fa-at"></i></span>
 </div>
-<input type="text" class="form-control" value="<?php echo $row["email"]; ?>" placeholder="E-Mail" aria-label="E-Mail" maxlength="64" id="email" name="email">
+<input type="text" class="form-control" value="<?php echo $row["email"]; ?>" placeholder="E-Mail" aria-label="E-Mail" maxlength="32" id="email" name="email">
 </div>
 
 </div>
@@ -136,7 +136,7 @@ $rowUser = MysqlArray(MysqlSelect("SELECT * FROM ms_users WHERE userid = '".Mysq
 <div class="input-group-prepend">
 <span class="input-group-text"><i class="fas fa-box"></i></span>
 </div>
-<input type="text" class="form-control" value="<?php echo $row["product"]; ?>" placeholder="Artikel" aria-label="Artikel" maxlength="50" id="product" name="product">
+<input type="text" class="form-control" value="<?php echo $row["product"]; ?>" placeholder="Artikel" aria-label="Artikel" maxlength="32" id="product" name="product">
 </div>
 
 <div id="checkAddReturnProduct"></div>
