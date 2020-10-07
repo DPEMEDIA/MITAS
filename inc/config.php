@@ -21,9 +21,9 @@ setlocale(LC_TIME, "de_DE.utf8");
 // Define Database
 // ===================================
 define("DBHOST", "localhost");
-define("DBNAME", "d02dae96");
-define("DBPASS", "Southball1");
-define("DBUSER", "d02dae96");
+define("DBNAME", "");
+define("DBPASS", "");
+define("DBUSER", "");
 
 // ===================================
 // Create Connection
